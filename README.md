@@ -18,6 +18,19 @@ This project was inspired by another developer who created an impressive Windows
 
 ---
 
+## Tech Stack
+
+Here’s what I’m using to build this portfolio:
+
+- **Next.js:** Powers the site with server-side rendering and static generation for better performance.
+- **React:** The backbone for creating the interactive and dynamic user interface.
+- **TypeScript:** Keeps the codebase strong and easy to manage with type safety.
+- **Chakra UI:** Handles the styling, making sure everything looks good and works well across devices.
+- **Framer Motion:** Adds those smooth animations and transitions to bring the UI to life.
+- **SCSS:** Helps keep the styles clean and organized with the flexibility of Sass.
+
+---
+
 ## **Features**
 
 - **💻 macOS-inspired Design (Desktop):** The desktop version of the portfolio mimics the look and feel of macOS, with a dock, draggable windows, and other familiar elements.
