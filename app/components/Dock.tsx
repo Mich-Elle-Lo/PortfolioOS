@@ -11,10 +11,11 @@ const Dock = ({ onOpenApp }: { onOpenApp: (app: string) => void }) => {
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
-      const threshold = window.innerHeight - 30; // 2/3 rem from bottom
-      if (event.clientY >= threshold) {
+      const showThreshold = window.innerHeight - 30;
+      const hideThreshold = window.innerHeight - 80 * 5;
+      if (event.clientY >= showThreshold) {
         setIsVisible(true);
-      } else {
+      } else if (event.clientY <= hideThreshold) {
         setIsVisible(false);
       }
     };
