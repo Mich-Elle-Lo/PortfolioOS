@@ -17,7 +17,6 @@ const styles = {
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
       backgroundPosition: "center center",
-      border: "5px solid red !important",
     },
   }),
 };

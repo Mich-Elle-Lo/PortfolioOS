@@ -37,14 +37,13 @@ const MacWindow = ({ title, children, onClose }: MacWindowProps) => {
       >
         <Box
           className={styles["window__header"]}
-          bg={colorMode === "light" ? "gray.100" : "gray.700"} // Dynamic header background color
+          bg={colorMode === "light" ? "gray.100" : "gray.700"}
           display="flex"
           alignItems="center"
           justifyContent="space-between"
           padding="0.5rem"
         >
           <Box display="flex" gap="0.5rem">
-            {/* macOS style window controls */}
             <Box
               w="12px"
               h="12px"
