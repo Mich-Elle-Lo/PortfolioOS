@@ -32,10 +32,21 @@ const Dock = ({ onOpenApp }: { onOpenApp: (app: string) => void }) => {
       {isVisible && (
         <motion.div
           className={styles.dockContainer}
-          initial={{ y: 100 }}
-          animate={{ y: 0 }}
-          exit={{ y: 100 }}
-          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 100, opacity: 0 }}
+          transition={{
+            y: {
+              type: "spring",
+              damping: 10,
+              stiffness: 70,
+              restDelta: 0.001,
+            },
+            opacity: {
+              duration: 0.5,
+              ease: "easeInOut",
+            },
+          }}
         >
           <Box
             className={styles.dock}
