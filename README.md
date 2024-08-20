@@ -1,37 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# **Michelle's Portfolio** 🌟
 
-## Getting Started
+Welcome to my personal portfolio!
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## **About**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This project is my personal portfolio, a space where I showcase my skills, projects, and passions. It's a work in progress, and I'm continuously adding new features, improving the design, and refining the content. While it's not yet complete, I hope you enjoy exploring it as much as I enjoy building it!
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## **Inspiration**
 
-## Learn More
+> _"Creativity is contagious, pass it on."_ – Albert Einstein
 
-To learn more about Next.js, take a look at the following resources:
+This project was inspired by another developer who created an impressive Windows 11 clone. Seeing their work reminded me of the power of inspiration in our learning journeys. We grow and innovate by building upon the ideas of others, and this portfolio is my own take on blending design and functionality in a way that reflects my style and interests. It’s a testament to how creativity flourishes when we are motivated by the incredible work of our peers.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## **Features**
 
-## Deploy on Vercel
+- **💻 macOS-inspired Design (Desktop):** The desktop version of the portfolio mimics the look and feel of macOS, with a dock, draggable windows, and other familiar elements.
+- **📱 iPhone-inspired Design (Mobile):** On mobile devices, the UI transforms to resemble an iPhone, providing a smooth and familiar experience for mobile users.
+- **✨ Interactive Elements:** Explore the projects, open documents, and even use a built-in browser window within the portfolio.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# PortfolioOS
+## **What's Next?**
+
+- **📱 Continued Mobile Optimization:** I'll be refining the iPhone-inspired design to ensure a seamless experience on mobile devices.
+- **📝 Project Additions:** More projects and case studies will be added to showcase my work and experiences.
+- **📰 Blog Section:** I'm planning to add a blog where I'll share insights, tutorials, and thoughts on technology and development.
+
+---
+
+## **Contributing**
+
+While this is a personal project, I'm always open to feedback and suggestions. Feel free to open an issue or reach out if you have ideas on how to improve the portfolio!
+
+---
+
+## **License**
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+---
+
+## **Connect with Me**
+
+- **LinkedIn:** [Michelle Lo](https://www.linkedin.com/in/michelle--lo/)
+- **GitHub:** [Mich-Elle-Lo](https://github.com/Mich-Elle-Lo)
+
+---
+
+Enjoy exploring my portfolio! 😊
