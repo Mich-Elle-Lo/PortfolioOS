@@ -37,10 +37,9 @@ const Dock = ({ onOpenApp }: { onOpenApp: (app: string) => void }) => {
           exit={{ y: 100, opacity: 0 }}
           transition={{
             y: {
-              type: "spring",
-              damping: 10,
-              stiffness: 70,
-              restDelta: 0.001,
+              type: "tween",
+              duration: 0.5,
+              ease: "easeInOut",
             },
             opacity: {
               duration: 0.5,
