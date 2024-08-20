@@ -1,0 +1,33 @@
+@import "./variables.scss";
+
+.window {
+  background-color: white;
+  border-radius: $border-radius;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $padding-small;
+    background-color: $background-color-light;
+    border-bottom: 1px solid $background-color-dark;
+    cursor: move;
+  }
+
+  &__close {
+    cursor: pointer;
+    padding: $padding-small;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+  }
+
+  &__content {
+    padding: $padding-medium;
+    flex-grow: 1;
+  }
+}

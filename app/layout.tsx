@@ -1,6 +1,5 @@
-import "./styles/global.scss";
-import { ChakraProvider } from "@chakra-ui/react";
-import { customTheme } from "./config/theme";
+// app/layout.tsx
+import { Providers } from "./providers";
 
 export default function RootLayout({
   children,
@@ -11,7 +10,7 @@ export default function RootLayout({
     <html lang="en">
       <head />
       <body>
-        <ChakraProvider theme={customTheme}>{children}</ChakraProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

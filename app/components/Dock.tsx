@@ -1,5 +1,5 @@
 "use client";
-import styles from "../../styles/Dock.module.scss";
+import styles from "../styles/Dock.module.scss";
 import { motion } from "framer-motion";
 import { Box, Icon } from "@chakra-ui/react";
 import { dockIcons } from "../config/icons";
