@@ -25,7 +25,13 @@ export default function Home() {
     <Box
       style={{
         height: "100vh",
-        backgroundColor: colorMode === "light" ? "#f0f0f0" : "#1e1e1e",
+        backgroundImage:
+          colorMode === "light"
+            ? "url('/lightbg.jpeg')"
+            : "url('/darkbg.jpeg')",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center center",
         position: "relative",
       }}
     >

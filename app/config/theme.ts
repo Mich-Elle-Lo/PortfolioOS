@@ -1,16 +1,30 @@
-import { extendTheme } from "@chakra-ui/react";
+import { extendTheme, ThemeConfig } from "@chakra-ui/react";
 
-export const customTheme = extendTheme({
-  styles: {
-    global: {
-      body: {
-        bg: "#f0f0f0",
-        color: "black",
-      },
+const config: ThemeConfig = {
+  initialColorMode: "dark",
+  useSystemColorMode: false,
+};
+
+const styles = {
+  global: (props: any) => ({
+    body: {
+      bg: props.colorMode === "dark" ? "gray.800" : "gray.100",
+      color: props.colorMode === "dark" ? "whiteAlpha.900" : "gray.800",
+      backgroundImage:
+        props.colorMode === "dark"
+          ? "url('/darkbg.jpeg') !important"
+          : "url('/lightbg.jpeg') !important",
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "center center",
+      border: "5px solid red !important",
     },
-  },
-  colors: {
-    primary: "#0070f3",
-    secondary: "#1e1e1e",
-  },
+  }),
+};
+
+const customTheme = extendTheme({
+  config,
+  styles,
 });
+
+export default customTheme;

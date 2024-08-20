@@ -1,12 +1,16 @@
 "use client";
 import styles from "../styles/Dock.module.scss";
 import { motion } from "framer-motion";
-import { Box, Icon } from "@chakra-ui/react";
+import { Box, Icon, useColorMode } from "@chakra-ui/react";
 import { dockIcons } from "../config/icons";
 
-const Dock = ({ onOpenApp }) => {
+const Dock = ({ onOpenApp }: { onOpenApp: (app: string) => void }) => {
+  const { colorMode } = useColorMode();
   return (
-    <Box className={styles.dock}>
+    <Box
+      className={styles.dock}
+      bg={colorMode === "light" ? "gray.400" : "gray.700"}
+    >
       {dockIcons.map(({ icon, label, action }) => (
         <motion.div
           key={label}
