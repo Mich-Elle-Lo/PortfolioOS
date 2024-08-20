@@ -1,0 +1,31 @@
+@import "./variables.scss";
+
+.dock {
+  position: fixed;
+  bottom: $padding-small;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  background-color: $secondary-color;
+  padding: $padding-medium;
+  border-radius: $border-radius;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+  &__icon {
+    margin: 0 $padding-small;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.5);
+    }
+  }
+
+  @media (prefers-color-scheme: light) {
+    background-color: $background-color-light;
+
+    &__icon {
+      color: $text-color-light;
+    }
+  }
+}
