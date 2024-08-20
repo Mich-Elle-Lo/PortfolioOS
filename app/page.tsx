@@ -6,6 +6,7 @@ import BrowserWindow from "./components/BrowserWindow";
 import DocumentViewer from "./components/DocumentViewer";
 import TopBar from "./components/TopBar";
 import MobileWarning from "./components/MobileWarning";
+import VSCodeWindow from "./components/VSCodeWindow";
 import { Box, useColorMode } from "@chakra-ui/react";
 
 export default function Home() {
@@ -42,14 +43,13 @@ export default function Home() {
 
         {openWindows.includes("finder") && (
           <MacWindow title="Finder" onClose={() => handleCloseApp("finder")}>
-            {/* Finder Content */}
-            {/* Add your content here */}
+            <DocumentViewer />
           </MacWindow>
         )}
 
         {openWindows.includes("files") && (
           <MacWindow title="Files" onClose={() => handleCloseApp("files")}>
-            {/* Files Content */}
+            <DocumentViewer />
           </MacWindow>
         )}
 
@@ -64,7 +64,7 @@ export default function Home() {
             title="Projects"
             onClose={() => handleCloseApp("projects")}
           >
-            {/* Projects Content */}
+            <DocumentViewer />
           </MacWindow>
         )}
 
@@ -75,6 +75,9 @@ export default function Home() {
           >
             <DocumentViewer />
           </MacWindow>
+        )}
+        {openWindows.includes("vscode") && (
+          <VSCodeWindow onClose={() => handleCloseApp("vscode")} />
         )}
       </Box>
     </MobileWarning>

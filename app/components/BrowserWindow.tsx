@@ -31,7 +31,7 @@ const BrowserWindow = () => {
   };
 
   return (
-    <Box>
+    <Box display="flex" flexDirection="column" height="100%">
       <Box display="flex" mb={2}>
         <Input
           value={url}
@@ -47,13 +47,13 @@ const BrowserWindow = () => {
           Go
         </Button>
       </Box>
-      <Box height="100%" overflow="hidden">
+      <Box flexGrow={1} overflow="hidden">
         {isBlocked ? (
           <Text color="red.500">The site refused to connect.</Text>
         ) : (
           <iframe
             src={url}
-            style={{ width: "100%", height: "400px" }}
+            style={{ width: "100%", height: "100%", border: "none" }}
             onLoad={handleIframeLoad}
             onError={handleIframeError}
           />

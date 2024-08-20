@@ -20,14 +20,24 @@ const MacWindow = ({ title, children, onClose }: MacWindowProps) => {
         x: 150,
         y: 150,
         width: 600,
-        height: 400,
+        height: 500,
       }}
-      style={{ zIndex }}
+      style={{ zIndex, border: "1px solid #ccc", borderRadius: "8px" }}
       minWidth={300}
-      minHeight={200}
+      minHeight={400}
       bounds="parent"
       onDragStart={() => setZIndex(1000)}
       onResizeStart={() => setZIndex(1000)}
+      enableResizing={{
+        top: true,
+        right: true,
+        bottom: true,
+        left: true,
+        topRight: true,
+        bottomRight: true,
+        bottomLeft: true,
+        topLeft: true,
+      }}
     >
       <Box
         className={styles.window}

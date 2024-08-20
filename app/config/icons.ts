@@ -5,6 +5,7 @@ import {
   FaChrome,
   FaFileAlt,
 } from "react-icons/fa";
+import { SiVisualstudiocode } from "react-icons/si";
 
 export const dockIcons = [
   { icon: FaApple, label: "Finder", action: "finder" },
@@ -12,4 +13,5 @@ export const dockIcons = [
   { icon: FaChrome, label: "Browser", action: "browser" },
   { icon: FaCode, label: "Projects", action: "projects" },
   { icon: FaFileAlt, label: "Document", action: "document" },
+  { icon: SiVisualstudiocode, label: "VSCode", action: "vscode" },
 ];
