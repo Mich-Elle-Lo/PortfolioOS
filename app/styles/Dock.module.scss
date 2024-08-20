@@ -1,21 +1,26 @@
-.dock {
-  display: flex;
-  padding: 16px;
-  border-radius: 8px;
+.dockContainer {
   position: fixed;
-  bottom: 0.5rem;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
 
-  &__icon {
-    margin: 8px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
+  .dock {
+    display: flex;
+    padding: 16px;
+    border-radius: 8px;
+    // position: fixed;
+    // bottom: 0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    // z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 
-    &:hover {
-      transform: scale(1.5);
+    &__icon {
+      margin: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
     }
   }
 }
