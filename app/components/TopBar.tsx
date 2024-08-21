@@ -6,28 +6,18 @@ import {
   useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
 import { FaWifi, FaBatteryFull } from "react-icons/fa";
 import { AiOutlineApple } from "react-icons/ai";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { useCurrentTime } from "../hooks/useCurrentTime";
+import { formatTime } from "../utils/utils";
 
 const TopBar = () => {
-  const [time, setTime] = useState(new Date());
+  const time = useCurrentTime();
   const { colorMode, toggleColorMode } = useColorMode();
 
   const bgColor = useColorModeValue("gray.300", "gray.900");
   const textColor = useColorModeValue("black", "white");
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(new Date());
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const formatTime = (date: Date) => {
-    return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-  };
 
   return (
     <Box

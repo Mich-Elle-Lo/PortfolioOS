@@ -46,7 +46,7 @@ export default function Home() {
           const commonProps = {
             onClose: () => handleCloseApp(app),
             zIndex,
-            onClick: () => bringToFront(app),
+
             initialX: x,
             initialY: y,
           };

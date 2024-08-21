@@ -10,7 +10,7 @@ interface MacWindowProps {
   children: React.ReactNode;
   onClose: () => void;
   zIndex: number;
-  onClick: () => void;
+
   initialX: number;
   initialY: number;
 }
@@ -20,7 +20,7 @@ const MacWindow: React.FC<MacWindowProps> = ({
   children,
   onClose,
   zIndex,
-  onClick,
+
   initialX,
   initialY,
 }) => {
@@ -38,9 +38,6 @@ const MacWindow: React.FC<MacWindowProps> = ({
       minWidth={300}
       minHeight={400}
       bounds="parent"
-      onDragStart={onClick}
-      onResizeStart={onClick}
-      onMouseDown={onClick}
       enableResizing={{
         top: true,
         right: true,
@@ -56,7 +53,6 @@ const MacWindow: React.FC<MacWindowProps> = ({
         className={styles.window}
         bg={colorMode === "light" ? "white" : "gray.800"}
         color={colorMode === "light" ? "black" : "white"}
-        onMouseDown={onClick}
         cursor="default"
       >
         <Box

@@ -18,3 +18,7 @@ export const getZIndex = (zIndexOrder: string[], app: string): number => {
 export const bringToFront = (zIndexOrder: string[], app: string): string[] => {
   return [...zIndexOrder.filter((w) => w !== app), app];
 };
+
+export const formatTime = (date: Date): string => {
+  return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+};
