@@ -8,6 +8,7 @@ import {
   Textarea,
   useColorModeValue,
   Text,
+  Heading,
 } from "@chakra-ui/react";
 import { useEmailForm } from "../hooks/useEmailForm";
 
@@ -40,6 +41,14 @@ const EmailForm = () => {
       display="flex"
       flexDirection="column"
     >
+      <Heading as="h2" size="md" mb="6" textAlign="center">
+        Let's Connect!
+      </Heading>
+      <Text mb="6" textAlign="center" color={textColor}>
+        If you're interested in hiring me or collaborating on a project, I'd
+        love to hear from you. Feel free to reach out, and let's create
+        something amazing together!
+      </Text>
       <Text fontSize="lg" mb="2" color={textColor}>
         To: Michelle Lo
       </Text>
