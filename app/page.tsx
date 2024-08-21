@@ -9,52 +9,17 @@ import MobileWarning from "./components/MobileWarning";
 import VSCodeWindow from "./components/VSCodeWindow";
 import GitHubWindow from "./components/GitHubWindow";
 import { Box, useColorMode } from "@chakra-ui/react";
-
-interface WindowPosition {
-  x: number;
-  y: number;
-}
+import { useWindowManagement } from "./hooks/useWindowManagement";
 
 export default function Home() {
-  const [openWindows, setOpenWindows] = useState<string[]>([]);
-  const [zIndexOrder, setZIndexOrder] = useState<string[]>([]);
-  const [windowPositions, setWindowPositions] = useState<{
-    [key: string]: WindowPosition;
-  }>({});
   const { colorMode } = useColorMode();
-
-  const generateRandomPosition = (): WindowPosition => {
-    const maxX = window.innerWidth - 700;
-    const maxY = window.innerHeight - 600 - 60;
-    const x = Math.floor(Math.random() * maxX);
-    const y = Math.floor(Math.random() * maxY) + 60;
-    return { x, y };
-  };
-
-  const handleOpenApp = (app: string) => {
-    if (!openWindows.includes(app)) {
-      setOpenWindows([...openWindows, app]);
-      setZIndexOrder([...zIndexOrder, app]);
-      setWindowPositions({
-        ...windowPositions,
-        [app]: generateRandomPosition(),
-      });
-    } else {
-      bringToFront(app);
-    }
-  };
-
-  const handleCloseApp = (app: string) => {
-    setOpenWindows(openWindows.filter((w) => w !== app));
-    setZIndexOrder(zIndexOrder.filter((w) => w !== app));
-  };
-
-  const bringToFront = (app: string) => {
-    setZIndexOrder([...zIndexOrder.filter((w) => w !== app), app]);
-  };
-  const getZIndex = (app: string) => {
-    return zIndexOrder.indexOf(app) + 1;
-  };
+  const {
+    openWindows,
+    windowPositions,
+    handleOpenApp,
+    handleCloseApp,
+    getZIndex,
+  } = useWindowManagement();
 
   return (
     <MobileWarning>
