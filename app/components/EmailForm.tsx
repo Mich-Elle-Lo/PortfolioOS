@@ -42,12 +42,11 @@ const EmailForm = () => {
       flexDirection="column"
     >
       <Heading as="h2" size="md" mb="6" textAlign="center">
-        Let's Connect!
+        Let&apos;s Connect!
       </Heading>
       <Text mb="6" textAlign="center" color={textColor}>
-        If you're interested in hiring me or collaborating on a project, I'd
-        love to hear from you. Feel free to reach out, and let's create
-        something amazing together!
+        If you&apos;re interested in hiring me or working on a project,
+        don&apos;t hesitate to reach out!
       </Text>
       <Text fontSize="lg" mb="2" color={textColor}>
         To: Michelle Lo

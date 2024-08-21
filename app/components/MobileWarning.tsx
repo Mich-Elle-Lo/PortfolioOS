@@ -23,7 +23,7 @@ const MobileWarning = ({ children }: { children: ReactNode }) => {
   return isMobile ? (
     <Center height="100vh" bg="grey.400" color="white">
       <Text fontSize="xl" textAlign="center">
-        Oops! This app isn't ready to play on tiny screens yet. 📱
+        Oops! This app isn&apos;t ready to play on tiny screens yet. 📱
         <br />
         Please visit on a bigger device for the full experience! 🌟
       </Text>
