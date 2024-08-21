@@ -40,6 +40,9 @@ const WeatherWidget = () => {
   const [error, setError] = useState<string | null>(null);
   const [collapsed, setCollapsed] = useState(false);
 
+  const formBg = useColorModeValue("blue.300", "blue.800");
+  const textColor = "white";
+
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
@@ -85,7 +88,7 @@ const WeatherWidget = () => {
       <Box
         p="4"
         borderRadius="md"
-        bg={useColorModeValue("blue.300", "blue.800")}
+        bg={formBg}
         color="white"
         width="15rem"
         boxShadow="md"
