@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Rnd } from "react-rnd";
 import styles from "../styles/MacWindow.module.scss";
 import { Box, Text, useColorMode } from "@chakra-ui/react";
@@ -9,11 +9,19 @@ interface MacWindowProps {
   title: string;
   children: React.ReactNode;
   onClose: () => void;
+  zIndex: number;
+  onClick: () => void;
 }
 
-const MacWindow = ({ title, children, onClose }: MacWindowProps) => {
-  const [zIndex, setZIndex] = useState(1);
+const MacWindow = ({
+  title,
+  children,
+  onClose,
+  zIndex,
+  onClick,
+}: MacWindowProps) => {
   const { colorMode } = useColorMode();
+
   return (
     <Rnd
       default={{
@@ -26,8 +34,9 @@ const MacWindow = ({ title, children, onClose }: MacWindowProps) => {
       minWidth={300}
       minHeight={400}
       bounds="parent"
-      onDragStart={() => setZIndex(1000)}
-      onResizeStart={() => setZIndex(1000)}
+      onDragStart={onClick}
+      onResizeStart={onClick}
+      onMouseDown={onClick}
       enableResizing={{
         top: true,
         right: true,
@@ -41,9 +50,10 @@ const MacWindow = ({ title, children, onClose }: MacWindowProps) => {
     >
       <Box
         className={styles.window}
-        onMouseDown={() => setZIndex(1000)}
         bg={colorMode === "light" ? "white" : "gray.800"}
         color={colorMode === "light" ? "black" : "white"}
+        onMouseDown={onClick}
+        cursor="default"
       >
         <Box
           className={styles["window__header"]}
@@ -52,6 +62,7 @@ const MacWindow = ({ title, children, onClose }: MacWindowProps) => {
           alignItems="center"
           justifyContent="space-between"
           padding="0.5rem"
+          cursor="move"
         >
           <Box display="flex" gap="0.5rem">
             <Box

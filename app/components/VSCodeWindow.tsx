@@ -1,7 +1,17 @@
 import { Box } from "@chakra-ui/react";
 import MacWindow from "./MacWindow";
 
-const VSCodeWindow = ({ onClose }) => {
+interface GitHubWindowProps {
+  onClose: () => void;
+  zIndex: number;
+  onClick: () => void;
+}
+
+const VSCodeWindow: React.FC<GitHubWindowProps> = ({
+  onClose,
+  zIndex,
+  onClick,
+}) => {
   return (
     <MacWindow title="VSCode - PortfolioOS" onClose={onClose}>
       <Box height="100%" width="100%" overflow="hidden">

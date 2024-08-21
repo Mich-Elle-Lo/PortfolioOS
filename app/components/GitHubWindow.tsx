@@ -1,9 +1,29 @@
 import { useEffect, useState } from "react";
-import { Box, Text, Link } from "@chakra-ui/react";
+import {
+  Box,
+  Text,
+  Link,
+  Flex,
+  Heading,
+  Badge,
+  Icon,
+  Skeleton,
+} from "@chakra-ui/react";
+import { FaGithub } from "react-icons/fa";
 import MacWindow from "./MacWindow";
 import axios from "axios";
 
-const GitHubWindow = ({ onClose }) => {
+interface GitHubWindowProps {
+  onClose: () => void;
+  zIndex: number;
+  onClick: () => void;
+}
+
+const GitHubWindow: React.FC<GitHubWindowProps> = ({
+  onClose,
+  zIndex,
+  onClick,
+}) => {
   const [repos, setRepos] = useState<
     { id: number; name: string; description: string }[]
   >([]);
@@ -36,19 +56,54 @@ const GitHubWindow = ({ onClose }) => {
         overflow="auto"
         p="1rem"
       >
-        {loading && <Text>Loading repositories...</Text>}
+        <Flex alignItems="center" mb="1.5rem" color="white">
+          <Icon as={FaGithub} boxSize={8} />
+          <Heading as="h1" size="lg" ml="1rem">
+            Mich-Elle-Lo / Repositories
+          </Heading>
+        </Flex>
+        {loading && <Skeleton height="20px" mb="10px" />}
         {error && <Text color="red.500">Error fetching data: {error}</Text>}
-        {repos.length > 0 &&
-          repos.map((repo) => (
-            <Box key={repo.id} mb="1rem">
-              <Text fontWeight="bold">
-                <Link href={(repo as any).html_url} isExternal>
-                  {repo.name}
-                </Link>
-              </Text>
-              <Text>{repo.description || "No description provided."}</Text>
-            </Box>
-          ))}
+        {repos.length > 0 && (
+          <Box>
+            {repos.map((repo) => (
+              <Box
+                key={repo.id}
+                mb="1rem"
+                p="1rem"
+                border="1px"
+                borderColor="gray.700"
+                borderRadius="md"
+                bg="gray.800"
+              >
+                <Flex justifyContent="space-between" alignItems="center">
+                  <Box>
+                    <Link
+                      href={repo.html_url}
+                      isExternal
+                      fontSize="lg"
+                      fontWeight="bold"
+                      color="blue.300"
+                      _hover={{ textDecoration: "underline" }}
+                    >
+                      {repo.name}
+                    </Link>
+                    <Text color="gray.400">
+                      {repo.description || "No description provided."}
+                    </Text>
+                  </Box>
+                  <Badge colorScheme="green" fontSize="0.8em">
+                    {repo.language || "N/A"}
+                  </Badge>
+                </Flex>
+                <Flex mt="0.5rem" color="gray.500">
+                  <Text mr="1.5rem">{repo.stargazers_count} Stars</Text>
+                  <Text>{repo.forks_count} Forks</Text>
+                </Flex>
+              </Box>
+            ))}
+          </Box>
+        )}
       </Box>
     </MacWindow>
   );

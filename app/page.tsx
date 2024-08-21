@@ -12,16 +12,28 @@ import { Box, useColorMode } from "@chakra-ui/react";
 
 export default function Home() {
   const [openWindows, setOpenWindows] = useState<string[]>([]);
+  const [zIndexOrder, setZIndexOrder] = useState<string[]>([]);
   const { colorMode } = useColorMode();
 
   const handleOpenApp = (app: string) => {
     if (!openWindows.includes(app)) {
       setOpenWindows([...openWindows, app]);
+      setZIndexOrder([...zIndexOrder, app]);
+    } else {
+      bringToFront(app);
     }
   };
 
   const handleCloseApp = (app: string) => {
     setOpenWindows(openWindows.filter((w) => w !== app));
+    setZIndexOrder(zIndexOrder.filter((w) => w !== app));
+  };
+
+  const bringToFront = (app: string) => {
+    setZIndexOrder([...zIndexOrder.filter((w) => w !== app), app]);
+  };
+  const getZIndex = (app: string) => {
+    return zIndexOrder.indexOf(app) + 1;
   };
 
   return (
@@ -43,27 +55,41 @@ export default function Home() {
         <Dock onOpenApp={handleOpenApp} />
 
         {openWindows.includes("finder") && (
-          <MacWindow title="Finder" onClose={() => handleCloseApp("finder")}>
+          <MacWindow
+            title="Finder"
+            onClose={() => handleCloseApp("finder")}
+            zIndex={getZIndex("finder")}
+            onClick={() => bringToFront("finder")}
+          >
             <DocumentViewer />
           </MacWindow>
         )}
 
         {openWindows.includes("files") && (
-          <MacWindow title="Files" onClose={() => handleCloseApp("files")}>
+          <MacWindow
+            title="Files"
+            onClose={() => handleCloseApp("files")}
+            zIndex={getZIndex("files")}
+            onClick={() => bringToFront("files")}
+          >
             <DocumentViewer />
           </MacWindow>
         )}
 
         {openWindows.includes("browser") && (
-          <MacWindow title="Chrome" onClose={() => handleCloseApp("browser")}>
-            <BrowserWindow />
-          </MacWindow>
+          <BrowserWindow
+            onClose={() => handleCloseApp("browser")}
+            zIndex={getZIndex("browser")}
+            onClick={() => bringToFront("browser")}
+          />
         )}
 
         {openWindows.includes("projects") && (
           <MacWindow
             title="Projects"
             onClose={() => handleCloseApp("projects")}
+            zIndex={getZIndex("projects")}
+            onClick={() => bringToFront("projects")}
           >
             <DocumentViewer />
           </MacWindow>
@@ -73,15 +99,25 @@ export default function Home() {
           <MacWindow
             title="Document Viewer"
             onClose={() => handleCloseApp("document")}
+            zIndex={getZIndex("document")}
+            onClick={() => bringToFront("document")}
           >
             <DocumentViewer />
           </MacWindow>
         )}
         {openWindows.includes("vscode") && (
-          <VSCodeWindow onClose={() => handleCloseApp("vscode")} />
+          <VSCodeWindow
+            onClose={() => handleCloseApp("vscode")}
+            zIndex={getZIndex("vscode")}
+            onClick={() => bringToFront("vscode")}
+          />
         )}
         {openWindows.includes("github") && (
-          <GitHubWindow onClose={() => handleCloseApp("github")} />
+          <GitHubWindow
+            onClose={() => handleCloseApp("github")}
+            zIndex={getZIndex("github")}
+            onClick={() => bringToFront("github")}
+          />
         )}
       </Box>
     </MobileWarning>
