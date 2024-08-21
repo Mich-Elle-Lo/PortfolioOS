@@ -14,7 +14,7 @@ This project is my personal portfolio, a space where I showcase my skills, proje
 
 > _"Creativity is contagious, pass it on."_ – Albert Einstein
 
-This project was inspired by another developer who created an impressive Windows 11 clone. Seeing their work reminded me of the power of inspiration in our learning journeys. We grow and innovate by building upon the ideas of others, and this portfolio is my own take on blending design and functionality in a way that reflects my style and interests. It’s a testament to how creativity flourishes when we are motivated by the incredible work of our peers.
+This portfolio was inspired by the incredible work of [Mishan Poudel](https://github.com/MishanPoudel), who created an impressive Windows 11 clone. Mishan, in turn, drew inspiration from [Vivek Patel](https://github.com/vivek9patel), who crafted a remarkable Linux Ubuntu OS clone. Seeing their work sparked my own creativity and motivated me to build this portfolio, blending design and functionality in a way that reflects my personal style. It’s a great reminder of how inspiration flows through the developer community, pushing us to innovate and create something uniquely our own.
 
 ---
 
