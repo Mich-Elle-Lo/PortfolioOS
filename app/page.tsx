@@ -10,6 +10,7 @@ import VSCodeWindow from "./components/VSCodeWindow";
 import GitHubWindow from "./components/GitHubWindow";
 import ProjectsWindow from "./components/ProjectsWindow";
 import MailWindow from "./components/MailWindow";
+import WeatherWidget from "./components/WeatherWidget";
 import { Box, useColorMode } from "@chakra-ui/react";
 import { useWindowManagement } from "./hooks/useWindowManagement";
 
@@ -41,6 +42,7 @@ export default function Home() {
         }}
       >
         <TopBar />
+        <WeatherWidget />
         <Dock onOpenApp={handleOpenApp} />
 
         {openWindows.map((app, index) => {
