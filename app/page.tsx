@@ -9,6 +9,7 @@ import MobileWarning from "./components/MobileWarning";
 import VSCodeWindow from "./components/VSCodeWindow";
 import GitHubWindow from "./components/GitHubWindow";
 import ProjectsWindow from "./components/ProjectsWindow";
+import MailWindow from "./components/MailWindow";
 import { Box, useColorMode } from "@chakra-ui/react";
 import { useWindowManagement } from "./hooks/useWindowManagement";
 
@@ -72,12 +73,8 @@ export default function Home() {
 
             case "projects":
               return <ProjectsWindow {...commonProps} key={app} />;
-            case "document":
-              return (
-                <MacWindow title="Document Viewer" {...commonProps} key={app}>
-                  <DocumentViewer />
-                </MacWindow>
-              );
+            case "email":
+              return <MailWindow {...commonProps} key={app} />;
             case "vscode":
               return <VSCodeWindow {...commonProps} key={app} />;
             case "github":

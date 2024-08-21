@@ -10,11 +10,13 @@ import {
   FaTerminal,
   FaDocker,
   FaFigma,
+  FaEnvelope,
 } from "react-icons/fa";
 import { SiNotion, SiVisualstudiocode, SiJira } from "react-icons/si";
 
 export const dockIcons = [
   { icon: FaApple, label: "Finder", action: "finder" },
+  { icon: FaEnvelope, label: "Email", action: "email" },
   { icon: FaFolderOpen, label: "Files", action: "files" },
   { icon: FaChrome, label: "Browser", action: "browser" },
   { icon: FaCode, label: "Projects", action: "projects" },
