@@ -8,12 +8,16 @@ interface GitHubWindowProps {
   onClose: () => void;
   zIndex: number;
   onClick: () => void;
+  initialX: number;
+  initialY: number;
 }
 
 const BrowserWindow: React.FC<GitHubWindowProps> = ({
   onClose,
   zIndex,
   onClick,
+  initialX,
+  initialY,
 }) => {
   const [url, setUrl] = useState("https://www.google.com/webhp?igu=1");
 
@@ -42,7 +46,14 @@ const BrowserWindow: React.FC<GitHubWindowProps> = ({
   };
 
   return (
-    <MacWindow title="Chrome" onClose={onClose}>
+    <MacWindow
+      title="Chrome"
+      onClose={onClose}
+      zIndex={0}
+      onClick={() => {}}
+      initialX={initialX}
+      initialY={initialY}
+    >
       <Box display="flex" flexDirection="column" height="100%">
         <Box display="flex" mb={2}>
           <Input

@@ -20,7 +20,8 @@
     cursor: move;
   }
   &__content {
-    padding: $padding-medium;
+    padding: 0.1rem;
+    border-radius: $border-radius;
     flex-grow: 1;
     overflow: auto;
   }

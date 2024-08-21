@@ -17,12 +17,16 @@ interface GitHubWindowProps {
   onClose: () => void;
   zIndex: number;
   onClick: () => void;
+  initialX;
+  initialY;
 }
 
 const GitHubWindow: React.FC<GitHubWindowProps> = ({
   onClose,
   zIndex,
   onClick,
+  initialX,
+  initialY,
 }) => {
   const [repos, setRepos] = useState<
     { id: number; name: string; description: string }[]
@@ -48,7 +52,14 @@ const GitHubWindow: React.FC<GitHubWindowProps> = ({
   }, []);
 
   return (
-    <MacWindow title="GitHub - Mich-Elle-Lo Repositories" onClose={onClose}>
+    <MacWindow
+      title="GitHub - Mich-Elle-Lo Repositories"
+      onClose={onClose}
+      zIndex={0}
+      onClick={() => {}}
+      initialX={initialX}
+      initialY={initialY}
+    >
       <Box
         height="100%"
         width="100%"

@@ -5,15 +5,26 @@ interface GitHubWindowProps {
   onClose: () => void;
   zIndex: number;
   onClick: () => void;
+  initialX;
+  initialY;
 }
 
 const VSCodeWindow: React.FC<GitHubWindowProps> = ({
   onClose,
   zIndex,
   onClick,
+  initialX,
+  initialY,
 }) => {
   return (
-    <MacWindow title="VSCode - PortfolioOS" onClose={onClose}>
+    <MacWindow
+      title="VSCode - PortfolioOS"
+      onClose={onClose}
+      zIndex={0}
+      onClick={() => {}}
+      initialX={initialX}
+      initialY={initialY}
+    >
       <Box height="100%" width="100%" overflow="hidden">
         <iframe
           src="https://github1s.com/Mich-Elle-Lo/PortfolioOS"

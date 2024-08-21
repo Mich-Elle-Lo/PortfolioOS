@@ -10,15 +10,35 @@ import VSCodeWindow from "./components/VSCodeWindow";
 import GitHubWindow from "./components/GitHubWindow";
 import { Box, useColorMode } from "@chakra-ui/react";
 
+interface WindowPosition {
+  x: number;
+  y: number;
+}
+
 export default function Home() {
   const [openWindows, setOpenWindows] = useState<string[]>([]);
   const [zIndexOrder, setZIndexOrder] = useState<string[]>([]);
+  const [windowPositions, setWindowPositions] = useState<{
+    [key: string]: WindowPosition;
+  }>({});
   const { colorMode } = useColorMode();
+
+  const generateRandomPosition = (): WindowPosition => {
+    const maxX = window.innerWidth - 700;
+    const maxY = window.innerHeight - 600;
+    const x = Math.floor(Math.random() * maxX);
+    const y = Math.floor(Math.random() * maxY);
+    return { x, y };
+  };
 
   const handleOpenApp = (app: string) => {
     if (!openWindows.includes(app)) {
       setOpenWindows([...openWindows, app]);
       setZIndexOrder([...zIndexOrder, app]);
+      setWindowPositions({
+        ...windowPositions,
+        [app]: generateRandomPosition(),
+      });
     } else {
       bringToFront(app);
     }
@@ -41,6 +61,7 @@ export default function Home() {
       <Box
         style={{
           height: "100vh",
+          paddingTop: "60px",
           backgroundImage:
             colorMode === "light"
               ? "url('/lightbg.jpeg')"
@@ -54,71 +75,54 @@ export default function Home() {
         <TopBar />
         <Dock onOpenApp={handleOpenApp} />
 
-        {openWindows.includes("finder") && (
-          <MacWindow
-            title="Finder"
-            onClose={() => handleCloseApp("finder")}
-            zIndex={getZIndex("finder")}
-            onClick={() => bringToFront("finder")}
-          >
-            <DocumentViewer />
-          </MacWindow>
-        )}
+        {openWindows.map((app, index) => {
+          const { x, y } = windowPositions[app] || { x: 150, y: 60 };
+          const zIndex = getZIndex(app);
+          const commonProps = {
+            onClose: () => handleCloseApp(app),
+            zIndex,
+            onClick: () => bringToFront(app),
+            initialX: x,
+            initialY: y,
+          };
 
-        {openWindows.includes("files") && (
-          <MacWindow
-            title="Files"
-            onClose={() => handleCloseApp("files")}
-            zIndex={getZIndex("files")}
-            onClick={() => bringToFront("files")}
-          >
-            <DocumentViewer />
-          </MacWindow>
-        )}
+          switch (app) {
+            case "finder":
+              return (
+                <MacWindow title="Finder" {...commonProps} key={app}>
+                  <DocumentViewer />
+                </MacWindow>
+              );
+            case "files":
+              return (
+                <MacWindow title="Files" {...commonProps} key={app}>
+                  <DocumentViewer />
+                </MacWindow>
+              );
 
-        {openWindows.includes("browser") && (
-          <BrowserWindow
-            onClose={() => handleCloseApp("browser")}
-            zIndex={getZIndex("browser")}
-            onClick={() => bringToFront("browser")}
-          />
-        )}
+            case "browser":
+              return <BrowserWindow {...commonProps} key={app} />;
 
-        {openWindows.includes("projects") && (
-          <MacWindow
-            title="Projects"
-            onClose={() => handleCloseApp("projects")}
-            zIndex={getZIndex("projects")}
-            onClick={() => bringToFront("projects")}
-          >
-            <DocumentViewer />
-          </MacWindow>
-        )}
-
-        {openWindows.includes("document") && (
-          <MacWindow
-            title="Document Viewer"
-            onClose={() => handleCloseApp("document")}
-            zIndex={getZIndex("document")}
-            onClick={() => bringToFront("document")}
-          >
-            <DocumentViewer />
-          </MacWindow>
-        )}
-        {openWindows.includes("vscode") && (
-          <VSCodeWindow
-            onClose={() => handleCloseApp("vscode")}
-            zIndex={getZIndex("vscode")}
-            onClick={() => bringToFront("vscode")}
-          />
-        )}
-        {openWindows.includes("github") && (
-          <GitHubWindow
-            onClose={() => handleCloseApp("github")}
-            zIndex={getZIndex("github")}
-            onClick={() => bringToFront("github")}
-          />
-        )}
+            case "projects":
+              return (
+                <MacWindow title="Projects" {...commonProps} key={app}>
+                  <DocumentViewer />
+                </MacWindow>
+              );
+            case "document":
+              return (
+                <MacWindow title="Document Viewer" {...commonProps} key={app}>
+                  <DocumentViewer />
+                </MacWindow>
+              );
+            case "vscode":
+              return <VSCodeWindow {...commonProps} key={app} />;
+            case "github":
+              return <GitHubWindow {...commonProps} key={app} />;
+            default:
+              return null;
+          }
+        })}
       </Box>
     </MobileWarning>
   );

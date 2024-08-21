@@ -34,7 +34,8 @@ const TopBar = () => {
       bg={bgColor}
       color={textColor}
       width="100%"
-      height="30px"
+      height="1.875rem"
+      marginBottom=".6rem"
       display="flex"
       alignItems="center"
       justifyContent="space-between"

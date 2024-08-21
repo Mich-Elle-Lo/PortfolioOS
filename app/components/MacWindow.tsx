@@ -11,22 +11,26 @@ interface MacWindowProps {
   onClose: () => void;
   zIndex: number;
   onClick: () => void;
+  initialX: number;
+  initialY: number;
 }
 
-const MacWindow = ({
+const MacWindow: React.FC<MacWindowProps> = ({
   title,
   children,
   onClose,
   zIndex,
   onClick,
-}: MacWindowProps) => {
+  initialX,
+  initialY,
+}) => {
   const { colorMode } = useColorMode();
 
   return (
     <Rnd
       default={{
-        x: 150,
-        y: 150,
+        x: initialX,
+        y: initialY,
         width: 600,
         height: 500,
       }}
