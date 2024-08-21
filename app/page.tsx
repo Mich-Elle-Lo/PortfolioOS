@@ -7,6 +7,7 @@ import DocumentViewer from "./components/DocumentViewer";
 import TopBar from "./components/TopBar";
 import MobileWarning from "./components/MobileWarning";
 import VSCodeWindow from "./components/VSCodeWindow";
+import GitHubWindow from "./components/GitHubWindow";
 import { Box, useColorMode } from "@chakra-ui/react";
 
 export default function Home() {
@@ -78,6 +79,9 @@ export default function Home() {
         )}
         {openWindows.includes("vscode") && (
           <VSCodeWindow onClose={() => handleCloseApp("vscode")} />
+        )}
+        {openWindows.includes("github") && (
+          <GitHubWindow onClose={() => handleCloseApp("github")} />
         )}
       </Box>
     </MobileWarning>

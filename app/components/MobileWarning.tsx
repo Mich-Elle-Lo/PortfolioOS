@@ -3,7 +3,9 @@
 import { useEffect, useState } from "react";
 import { Box, Text, Center } from "@chakra-ui/react";
 
-const MobileWarning = ({ children }) => {
+import { ReactNode } from "react";
+
+const MobileWarning = ({ children }: { children: ReactNode }) => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
