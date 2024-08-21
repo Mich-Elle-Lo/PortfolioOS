@@ -16,7 +16,7 @@ import axios from "axios";
 interface GitHubWindowProps {
   onClose: () => void;
   zIndex: number;
-
+  onClick: () => void;
   initialX: number;
   initialY: number;
 }
@@ -24,6 +24,7 @@ interface GitHubWindowProps {
 const GitHubWindow: React.FC<GitHubWindowProps> = ({
   onClose,
   zIndex,
+  onClick,
   initialX,
   initialY,
 }) => {
@@ -62,7 +63,8 @@ const GitHubWindow: React.FC<GitHubWindowProps> = ({
     <MacWindow
       title="GitHub - Mich-Elle-Lo Repositories"
       onClose={onClose}
-      zIndex={0}
+      onClick={onClick}
+      zIndex={zIndex}
       initialX={initialX}
       initialY={initialY}
     >

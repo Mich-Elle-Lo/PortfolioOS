@@ -8,6 +8,7 @@ import TopBar from "./components/TopBar";
 import MobileWarning from "./components/MobileWarning";
 import VSCodeWindow from "./components/VSCodeWindow";
 import GitHubWindow from "./components/GitHubWindow";
+import ProjectsWindow from "./components/ProjectsWindow";
 import { Box, useColorMode } from "@chakra-ui/react";
 import { useWindowManagement } from "./hooks/useWindowManagement";
 
@@ -18,6 +19,7 @@ export default function Home() {
     windowPositions,
     handleOpenApp,
     handleCloseApp,
+    bringToFront,
     getZIndex,
   } = useWindowManagement();
 
@@ -45,8 +47,8 @@ export default function Home() {
           const zIndex = getZIndex(app);
           const commonProps = {
             onClose: () => handleCloseApp(app),
+            onClick: () => bringToFront(app),
             zIndex,
-
             initialX: x,
             initialY: y,
           };
@@ -69,11 +71,7 @@ export default function Home() {
               return <BrowserWindow {...commonProps} key={app} />;
 
             case "projects":
-              return (
-                <MacWindow title="Projects" {...commonProps} key={app}>
-                  <DocumentViewer />
-                </MacWindow>
-              );
+              return <ProjectsWindow {...commonProps} key={app} />;
             case "document":
               return (
                 <MacWindow title="Document Viewer" {...commonProps} key={app}>

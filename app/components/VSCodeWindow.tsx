@@ -4,7 +4,7 @@ import MacWindow from "./MacWindow";
 interface GitHubWindowProps {
   onClose: () => void;
   zIndex: number;
-
+  onClick: () => void;
   initialX: number;
   initialY: number;
 }
@@ -12,7 +12,7 @@ interface GitHubWindowProps {
 const VSCodeWindow: React.FC<GitHubWindowProps> = ({
   onClose,
   zIndex,
-
+  onClick,
   initialX,
   initialY,
 }) => {
@@ -20,7 +20,8 @@ const VSCodeWindow: React.FC<GitHubWindowProps> = ({
     <MacWindow
       title="VSCode - PortfolioOS"
       onClose={onClose}
-      zIndex={0}
+      onClick={onClick}
+      zIndex={zIndex}
       initialX={initialX}
       initialY={initialY}
     >

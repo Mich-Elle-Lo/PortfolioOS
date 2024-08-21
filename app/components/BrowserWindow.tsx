@@ -6,6 +6,7 @@ import MacWindow from "./MacWindow";
 
 interface GitHubWindowProps {
   onClose: () => void;
+  onClick: () => void;
   zIndex: number;
   initialX: number;
   initialY: number;
@@ -14,6 +15,7 @@ interface GitHubWindowProps {
 const BrowserWindow: React.FC<GitHubWindowProps> = ({
   onClose,
   zIndex,
+  onClick,
   initialX,
   initialY,
 }) => {
@@ -47,7 +49,8 @@ const BrowserWindow: React.FC<GitHubWindowProps> = ({
     <MacWindow
       title="Chrome"
       onClose={onClose}
-      zIndex={0}
+      onClick={onClick}
+      zIndex={zIndex}
       initialX={initialX}
       initialY={initialY}
     >

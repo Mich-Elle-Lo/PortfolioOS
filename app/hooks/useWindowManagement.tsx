@@ -38,5 +38,7 @@ export const useWindowManagement = () => {
     handleOpenApp,
     handleCloseApp,
     getZIndex: (app: string) => getZIndex(zIndexOrder, app),
+    bringToFront: (app: string) =>
+      setZIndexOrder(bringToFront(zIndexOrder, app)),
   };
 };

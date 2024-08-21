@@ -1,6 +1,4 @@
 "use client";
-
-import { useState, useEffect } from "react";
 import { Rnd } from "react-rnd";
 import styles from "../styles/MacWindow.module.scss";
 import { Box, Text, useColorMode } from "@chakra-ui/react";
@@ -9,8 +7,8 @@ interface MacWindowProps {
   title: string;
   children: React.ReactNode;
   onClose: () => void;
+  onClick: () => void;
   zIndex: number;
-
   initialX: number;
   initialY: number;
 }
@@ -19,8 +17,8 @@ const MacWindow: React.FC<MacWindowProps> = ({
   title,
   children,
   onClose,
+  onClick,
   zIndex,
-
   initialX,
   initialY,
 }) => {
@@ -38,6 +36,9 @@ const MacWindow: React.FC<MacWindowProps> = ({
       minWidth={300}
       minHeight={400}
       bounds="parent"
+      onDragStart={onClick}
+      onResizeStart={onClick}
+      onMouseDown={onClick}
       enableResizing={{
         top: true,
         right: true,
@@ -54,6 +55,7 @@ const MacWindow: React.FC<MacWindowProps> = ({
         bg={colorMode === "light" ? "white" : "gray.800"}
         color={colorMode === "light" ? "black" : "white"}
         cursor="default"
+        onMouseDown={onClick}
       >
         <Box
           className={styles["window__header"]}
