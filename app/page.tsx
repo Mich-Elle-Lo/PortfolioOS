@@ -25,9 +25,9 @@ export default function Home() {
 
   const generateRandomPosition = (): WindowPosition => {
     const maxX = window.innerWidth - 700;
-    const maxY = window.innerHeight - 600;
+    const maxY = window.innerHeight - 600 - 60;
     const x = Math.floor(Math.random() * maxX);
-    const y = Math.floor(Math.random() * maxY);
+    const y = Math.floor(Math.random() * maxY) + 60;
     return { x, y };
   };
 

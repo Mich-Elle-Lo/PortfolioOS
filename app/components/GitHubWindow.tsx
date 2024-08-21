@@ -17,8 +17,8 @@ interface GitHubWindowProps {
   onClose: () => void;
   zIndex: number;
   onClick: () => void;
-  initialX;
-  initialY;
+  initialX: number;
+  initialY: number;
 }
 
 const GitHubWindow: React.FC<GitHubWindowProps> = ({
@@ -29,7 +29,15 @@ const GitHubWindow: React.FC<GitHubWindowProps> = ({
   initialY,
 }) => {
   const [repos, setRepos] = useState<
-    { id: number; name: string; description: string }[]
+    {
+      id: number;
+      name: string;
+      description: string;
+      language: string;
+      stargazers_count: number;
+      forks_count: number;
+      html_url: string;
+    }[]
   >([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -41,7 +49,7 @@ const GitHubWindow: React.FC<GitHubWindowProps> = ({
           "https://api.github.com/users/Mich-Elle-Lo/repos"
         );
         setRepos(response.data);
-      } catch (err) {
+      } catch (err: any) {
         setError(err.message);
       } finally {
         setLoading(false);
