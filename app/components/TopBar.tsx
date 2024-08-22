@@ -26,6 +26,7 @@ const TopBar = () => {
       width="100%"
       height="1.875rem"
       marginBottom=".6rem"
+      cursor="default"
       display="flex"
       alignItems="center"
       justifyContent="space-between"
@@ -34,7 +35,7 @@ const TopBar = () => {
       top="0"
       zIndex="1000"
     >
-      <Flex alignItems="center">
+      <Flex alignItems="center" cursor="default">
         <AiOutlineApple size="20px" />
         <Text ml="10px">File</Text>
         <Text ml="10px">Edit</Text>
