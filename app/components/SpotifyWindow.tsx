@@ -43,6 +43,15 @@ const SpotifyWindow: React.FC<SpotifyWindowProps> = ({
     fetchData();
   }, []);
 
+  const handlePlayPause = () => {
+    setIsPlaying(!isPlaying);
+  };
+
+  const handleTrackSelect = (track) => {
+    setCurrentTrack(track);
+    setIsPlaying(true);
+  };
+
   const bg = useColorModeValue("gray.900", "gray.800");
   const textColor = useColorModeValue("white", "gray.200");
 
@@ -55,13 +64,25 @@ const SpotifyWindow: React.FC<SpotifyWindowProps> = ({
       initialX={initialX}
       initialY={initialY}
     >
-      <Box
-        bg={bg}
-        color={textColor}
-        p="4"
-        height="100%"
-        borderRadius="md"
-      ></Box>
+      <Box bg={bg} color={textColor} p="4" height="100%" borderRadius="md">
+        {currentTrack && (
+          <Box textAlign="center" mb="4">
+            <Image
+              src={currentTrack.track.album.images[0].url}
+              alt={currentTrack.track.name}
+              boxSize="200px"
+              borderRadius="md"
+              mx="auto"
+            />
+            <Text fontSize="lg" mt="2">
+              {currentTrack.track.name}
+            </Text>
+            <Text fontSize="sm" color="gray.400">
+              {currentTrack.track.artists[0].name}
+            </Text>
+          </Box>
+        )}
+      </Box>
     </MacWindow>
   );
 };
