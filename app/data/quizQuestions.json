@@ -1,0 +1,157 @@
+[
+  {
+    "id": 1,
+    "question": "What is the correct syntax to print a message in Python?",
+    "choices": [
+      "print('Hello World')",
+      "echo('Hello World')",
+      "cout << 'Hello World'",
+      "System.out.println('Hello World')"
+    ],
+    "correctAnswer": 0,
+    "hint": "Python uses the print function."
+  },
+  {
+    "id": 2,
+    "question": "Which of the following is a JavaScript framework?",
+    "choices": ["Laravel", "Django", "React", "Flask"],
+    "correctAnswer": 2,
+    "hint": "It's widely used for building user interfaces."
+  },
+  {
+    "id": 3,
+    "question": "What is the result of `typeof null` in JavaScript?",
+    "choices": ["'null'", "'undefined'", "'object'", "'boolean'"],
+    "correctAnswer": 2,
+    "hint": "It's a known quirk in JavaScript."
+  },
+  {
+    "id": 4,
+    "question": "How do you declare a constant in JavaScript?",
+    "choices": [
+      "const name = 'John';",
+      "let name = 'John';",
+      "var name = 'John';",
+      "constant name = 'John';"
+    ],
+    "correctAnswer": 0,
+    "hint": "It uses the `const` keyword."
+  },
+  {
+    "id": 5,
+    "question": "Which of the following is a valid way to create a React component?",
+    "choices": [
+      "function MyComponent() { return <div>Hello</div>; }",
+      "function MyComponent() { return <div>Hello</div> }",
+      "const MyComponent = () => <div>Hello</div>;",
+      "Both A and C"
+    ],
+    "correctAnswer": 3,
+    "hint": "There are multiple ways to create components in React."
+  },
+  {
+    "id": 6,
+    "question": "What is the purpose of `useEffect` in React?",
+    "choices": [
+      "To fetch data from an API",
+      "To perform side effects in a component",
+      "To declare state variables",
+      "To render JSX"
+    ],
+    "correctAnswer": 1,
+    "hint": "It's commonly used for actions that are performed after rendering."
+  },
+  {
+    "id": 7,
+    "question": "How do you type a function that returns a string in TypeScript?",
+    "choices": [
+      "function getName(): string",
+      "function getName(): void",
+      "function getName() string",
+      "function getName(): any"
+    ],
+    "correctAnswer": 0,
+    "hint": "The return type is specified after the colon."
+  },
+  {
+    "id": 8,
+    "question": "Which keyword is used to handle exceptions in JavaScript?",
+    "choices": ["try", "catch", "throw", "All of the above"],
+    "correctAnswer": 3,
+    "hint": "JavaScript uses a combination of these keywords."
+  },
+  {
+    "id": 9,
+    "question": "Which of the following is a TypeScript feature?",
+    "choices": [
+      "Type inference",
+      "Automatic semicolon insertion",
+      "Global variables",
+      "None of the above"
+    ],
+    "correctAnswer": 0,
+    "hint": "TypeScript is known for its static type checking."
+  },
+  {
+    "id": 10,
+    "question": "How can you spread an array in JavaScript?",
+    "choices": ["[...array]", "[...array()]", "{...array}", "array[...]"],
+    "correctAnswer": 0,
+    "hint": "It uses the spread operator."
+  },
+  {
+    "id": 11,
+    "question": "What does JSX stand for?",
+    "choices": [
+      "JavaScript Syntax Extension",
+      "JavaScript XML",
+      "JavaScript and XML",
+      "None of the above"
+    ],
+    "correctAnswer": 1,
+    "hint": "It's commonly used in React."
+  },
+  {
+    "id": 12,
+    "question": "What is the difference between `==` and `===` in JavaScript?",
+    "choices": [
+      "`==` checks value only, `===` checks value and type",
+      "`==` checks type only, `===` checks value and type",
+      "`==` checks value and type, `===` checks value only",
+      "`==` checks value, `===` checks value"
+    ],
+    "correctAnswer": 0,
+    "hint": "`===` is the strict equality operator."
+  },
+  {
+    "id": 13,
+    "question": "How do you create a promise in JavaScript?",
+    "choices": [
+      "new Promise((resolve, reject) => { })",
+      "Promise.create(() => { })",
+      "Promise((resolve, reject) => { })",
+      "new Promise(resolve, reject) => { }"
+    ],
+    "correctAnswer": 0,
+    "hint": "It uses the `new` keyword."
+  },
+  {
+    "id": 14,
+    "question": "What is a higher-order function in JavaScript?",
+    "choices": [
+      "A function that takes another function as an argument",
+      "A function that returns another function",
+      "A function that calls another function",
+      "Both A and B"
+    ],
+    "correctAnswer": 3,
+    "hint": "It's a function that deals with other functions."
+  },
+  {
+    "id": 15,
+    "question": "Which hook is used to manage state in a React component?",
+    "choices": ["useState", "useEffect", "useReducer", "useContext"],
+    "correctAnswer": 0,
+    "hint": "It’s the most basic hook for managing state."
+  }
+]
