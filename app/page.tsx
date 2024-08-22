@@ -12,6 +12,7 @@ import ProjectsWindow from "./components/ProjectsWindow";
 import MailWindow from "./components/MailWindow";
 import WeatherWidget from "./components/WeatherWidget";
 import IntroWindow from "./components/IntroWindow";
+import QuizWindow from "./components/QuizWindow";
 import { Box, useColorMode } from "@chakra-ui/react";
 import { useWindowManagement } from "./hooks/useWindowManagement";
 
@@ -74,6 +75,8 @@ export default function Home() {
               return <GitHubWindow {...commonProps} key={app} />;
             case "intro":
               return <IntroWindow {...commonProps} key={app} />;
+            case "quiz":
+              return <QuizWindow {...commonProps} key={app} />;
             default:
               return null;
           }
