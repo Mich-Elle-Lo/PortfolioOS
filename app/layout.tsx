@@ -5,7 +5,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Michelle Lo | Portfolio",
   description:
-    "Welcome to Michelle Lo's portfolio, a unique MAC OS clone showcasing projects and skills in web development with JavaScript, React, and Next.js.",
+    "Welcome to Michelle Lo's portfolio, a unique MAC OS clone showcasing projects and skills.",
 };
 
 export default function RootLayout({
