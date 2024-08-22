@@ -1,9 +1,14 @@
 "use client";
-
-import { Box, Text, useColorModeValue, Flex, Spinner } from "@chakra-ui/react";
+import {
+  Box,
+  Text,
+  useColorModeValue,
+  Flex,
+  keyframes,
+} from "@chakra-ui/react";
 import MacWindow from "./MacWindow";
 
-interface EmptyWindowProps {
+interface TerminalProps {
   onClose: () => void;
   initialX: number;
   initialY: number;
@@ -11,7 +16,12 @@ interface EmptyWindowProps {
   onClick: () => void;
 }
 
-const EmptyWindow: React.FC<EmptyWindowProps> = ({
+const rotateAnimation = keyframes`
+  0% {transform: rotate(0deg);} 
+  100% {transform: rotate(360deg);}
+`;
+
+const Terminal: React.FC<TerminalProps> = ({
   onClose,
   initialX,
   initialY,
@@ -23,7 +33,7 @@ const EmptyWindow: React.FC<EmptyWindowProps> = ({
 
   return (
     <MacWindow
-      title="Coming Soon!"
+      title="Terminal"
       onClose={onClose}
       onClick={onClick}
       zIndex={zIndex}
@@ -43,19 +53,19 @@ const EmptyWindow: React.FC<EmptyWindowProps> = ({
         justifyContent="center"
       >
         <Flex direction="column" alignItems="center">
-          <Spinner
-            thickness="4px"
-            speed="0.65s"
-            emptyColor="gray.200"
-            color="blue.500"
-            size="xl"
+          <Text
+            fontSize="6xl"
             mb="4"
-          />
-          <Text fontSize="xl" fontWeight="bold" color={textColor}>
-            This feature is under construction!
+            color={textColor}
+            animation={`${rotateAnimation} 3s infinite linear`}
+          >
+            ✋🏼
           </Text>
-          <Text fontSize="md" mt="2" color={textColor}>
-            Please check back later.
+          <Text fontSize="30" fontWeight="bold" color={textColor}>
+            $ echo "Oops, nothing to see here... yet!"
+          </Text>
+          <Text fontSize="20" mt="2" color={textColor}>
+            $ echo "But don't worry, exciting commands are on the way!"
           </Text>
         </Flex>
       </Box>
@@ -63,4 +73,4 @@ const EmptyWindow: React.FC<EmptyWindowProps> = ({
   );
 };
 
-export default EmptyWindow;
+export default Terminal;

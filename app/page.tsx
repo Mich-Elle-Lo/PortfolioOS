@@ -1,9 +1,7 @@
 "use client";
 import { useEffect } from "react";
 import Dock from "./components/Dock";
-import MacWindow from "./components/MacWindow";
 import BrowserWindow from "./components/BrowserWindow";
-import DocumentViewer from "./components/DocumentViewer";
 import TopBar from "./components/TopBar";
 import MobileWarning from "./components/MobileWarning";
 import VSCodeWindow from "./components/VSCodeWindow";
@@ -14,6 +12,12 @@ import WeatherWidget from "./components/WeatherWidget";
 import IntroWindow from "./components/IntroWindow";
 import QuizWindow from "./components/QuizWindow";
 import SpotifyWindow from "./components/SpotifyWindow";
+import Files from "./components/Files";
+import Finder from "./components/Finder";
+import Terminal from "./components/Terminal";
+import Slack from "./components/Slack";
+import Figma from "./components/Figma";
+import Document from "./components/Document";
 import { Box, useColorMode } from "@chakra-ui/react";
 import { useWindowManagement } from "./hooks/useWindowManagement";
 
@@ -80,6 +84,18 @@ export default function Home() {
               return <IntroWindow {...commonProps} key={app} />;
             case "quiz":
               return <QuizWindow {...commonProps} key={app} />;
+            case "finder":
+              return <Finder {...commonProps} key={app} />;
+            case "files":
+              return <Files {...commonProps} key={app} />;
+            case "terminal":
+              return <Terminal {...commonProps} key={app} />;
+            case "slack":
+              return <Slack {...commonProps} key={app} />;
+            case "figma":
+              return <Figma {...commonProps} key={app} />;
+            case "document":
+              return <Document {...commonProps} key={app} />;
             default:
               return null;
           }
