@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export interface WindowPosition {
   x: number;
   y: number;
@@ -21,4 +23,35 @@ export const bringToFront = (zIndexOrder: string[], app: string): string[] => {
 
 export const formatTime = (date: Date): string => {
   return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+};
+
+const clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID;
+const clientSecret = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET;
+
+export const getSpotifyToken = async () => {
+  const tokenResponse = await axios.post(
+    "https://accounts.spotify.com/api/token",
+    new URLSearchParams({
+      grant_type: "client_credentials",
+    }),
+    {
+      headers: {
+        Authorization: `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    }
+  );
+  return tokenResponse.data.access_token;
+};
+
+export const getSpotifyData = async (
+  token: string,
+  endpoint: string
+): Promise<any> => {
+  const response = await axios.get(`https://api.spotify.com/v1/${endpoint}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
 };
