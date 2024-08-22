@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect } from "react";
 import Dock from "./components/Dock";
 import MacWindow from "./components/MacWindow";
 import BrowserWindow from "./components/BrowserWindow";
@@ -11,6 +11,7 @@ import GitHubWindow from "./components/GitHubWindow";
 import ProjectsWindow from "./components/ProjectsWindow";
 import MailWindow from "./components/MailWindow";
 import WeatherWidget from "./components/WeatherWidget";
+import IntroWindow from "./components/IntroWindow";
 import { Box, useColorMode } from "@chakra-ui/react";
 import { useWindowManagement } from "./hooks/useWindowManagement";
 
@@ -24,6 +25,10 @@ export default function Home() {
     bringToFront,
     getZIndex,
   } = useWindowManagement();
+
+  useEffect(() => {
+    handleOpenApp("intro");
+  }, []);
 
   return (
     <MobileWarning>
@@ -57,22 +62,8 @@ export default function Home() {
           };
 
           switch (app) {
-            case "finder":
-              return (
-                <MacWindow title="Finder" {...commonProps} key={app}>
-                  <DocumentViewer />
-                </MacWindow>
-              );
-            case "files":
-              return (
-                <MacWindow title="Files" {...commonProps} key={app}>
-                  <DocumentViewer />
-                </MacWindow>
-              );
-
             case "browser":
               return <BrowserWindow {...commonProps} key={app} />;
-
             case "projects":
               return <ProjectsWindow {...commonProps} key={app} />;
             case "email":
@@ -81,6 +72,8 @@ export default function Home() {
               return <VSCodeWindow {...commonProps} key={app} />;
             case "github":
               return <GitHubWindow {...commonProps} key={app} />;
+            case "intro":
+              return <IntroWindow {...commonProps} key={app} />;
             default:
               return null;
           }

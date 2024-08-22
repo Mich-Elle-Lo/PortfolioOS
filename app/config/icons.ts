@@ -12,6 +12,7 @@ import {
   FaFigma,
   FaEnvelope,
 } from "react-icons/fa";
+import { CgGirl } from "react-icons/cg";
 import { SiNotion, SiVisualstudiocode, SiJira } from "react-icons/si";
 
 export const dockIcons = [
@@ -29,4 +30,5 @@ export const dockIcons = [
   { icon: FaTerminal, label: "Terminal", action: "terminal" },
   { icon: SiJira, label: "Jira", action: "jira" },
   { icon: FaFigma, label: "Figma", action: "figma" },
+  { icon: CgGirl, label: "Intro", action: "intro" },
 ];
