@@ -1,5 +1,6 @@
-import { Box } from "@chakra-ui/react";
+import { Box, useColorMode } from "@chakra-ui/react";
 import MacWindow from "./MacWindow";
+import { color } from "framer-motion";
 
 interface SpotifyWindowProps {
   onClose: () => void;
@@ -16,6 +17,8 @@ const SpotifyWindow: React.FC<SpotifyWindowProps> = ({
   zIndex,
   onClick,
 }) => {
+  const { colorMode } = useColorMode();
+
   return (
     <MacWindow
       title="Spotify Player"
@@ -26,13 +29,31 @@ const SpotifyWindow: React.FC<SpotifyWindowProps> = ({
       initialY={initialY}
     >
       <Box height="100%" width="100%" overflow="hidden">
-        <iframe
-          src="https://open.spotify.com/embed/playlist/1K6znuBPBNo6Kpaizo6pyh?utm_source=generator&theme=0"
-          width="100%"
-          height="100%"
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy"
-        ></iframe>
+        {colorMode === "light" ? (
+          <iframe
+            src="https://open.spotify.com/embed/playlist/1K6znuBPBNo6Kpaizo6pyh?utm_source=generator"
+            width="101%"
+            height="101%"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+            style={{
+              borderRadius: "0",
+              margin: "-3px",
+            }}
+          ></iframe>
+        ) : (
+          <iframe
+            src="https://open.spotify.com/embed/playlist/1K6znuBPBNo6Kpaizo6pyh?utm_source=generator&theme=0"
+            width="101%"
+            height="101%"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+            style={{
+              borderRadius: "0",
+              margin: "-3px",
+            }}
+          ></iframe>
+        )}
       </Box>
     </MacWindow>
   );
