@@ -13,6 +13,7 @@ import MailWindow from "./components/MailWindow";
 import WeatherWidget from "./components/WeatherWidget";
 import IntroWindow from "./components/IntroWindow";
 import QuizWindow from "./components/QuizWindow";
+import SpotifyWindow from "./components/SpotifyWindow";
 import { Box, useColorMode } from "@chakra-ui/react";
 import { useWindowManagement } from "./hooks/useWindowManagement";
 
@@ -69,6 +70,8 @@ export default function Home() {
               return <ProjectsWindow {...commonProps} key={app} />;
             case "email":
               return <MailWindow {...commonProps} key={app} />;
+            case "spotify":
+              return <SpotifyWindow {...commonProps} key={app} />;
             case "vscode":
               return <VSCodeWindow {...commonProps} key={app} />;
             case "github":
