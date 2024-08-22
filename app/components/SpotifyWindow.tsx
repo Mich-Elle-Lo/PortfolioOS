@@ -80,6 +80,14 @@ const SpotifyWindow: React.FC<SpotifyWindowProps> = ({
             <Text fontSize="sm" color="gray.400">
               {currentTrack.track.artists[0].name}
             </Text>
+            <Button
+              onClick={handlePlayPause}
+              colorScheme={isPlaying ? "red" : "green"}
+              width="full"
+              mt="4"
+            >
+              {isPlaying ? "Pause" : "Play"}
+            </Button>
           </Box>
         )}
       </Box>
