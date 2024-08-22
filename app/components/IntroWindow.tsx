@@ -52,7 +52,7 @@ const IntroWindow: React.FC<IntroWindowProps> = ({
             🙋🏻‍♀️
           </Text>
           <Text fontSize="2xl" fontWeight="bold" mb="2">
-            Hey there! I'm Michelle Lo
+            I&apos;m Michelle. Welcome to my portfolio!
           </Text>
           <Text fontSize="lg" mb="4">
             Welcome to my portfolio, a macOS-inspired playground where you can
@@ -62,11 +62,11 @@ const IntroWindow: React.FC<IntroWindowProps> = ({
           <Text fontSize="md" mb="6">
             Feel free to dive in, play around with the different apps in the
             dock, and get a feel for the kind of projects I love to build.
-            Whether you're here to check out my latest work, drop me a message,
-            or just explore, I hope you enjoy the experience.
+            Whether you&apos;re here to check out my latest work, drop me a
+            message, or just explore, I hope you enjoy the experience.
           </Text>
           <Button onClick={onClose} size="lg" colorScheme="teal" boxShadow="md">
-            Let’s Explore!
+            Let&apos;s Explore!
           </Button>
         </Flex>
       </Box>
