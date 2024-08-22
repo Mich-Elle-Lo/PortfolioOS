@@ -90,14 +90,7 @@ const QuizWindow: React.FC<QuizWindowProps> = ({
           colors={["#3182CE", "#38A169", "#E53E3E", "#D69E2E"]}
         />
       )}
-      <Box
-        bg={bg}
-        p="4"
-        borderRadius="md"
-        boxShadow="md"
-        width="100%"
-        height="100%"
-      >
+      <Box bg={bg} p="4" width="100%" height="100%">
         <Text fontSize="xl" fontWeight="bold" mb="4" color={textColor}>
           {question.question}
         </Text>
