@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Box, Button, Text, Flex, useColorModeValue } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import MacWindow from "./MacWindow";
 import quizQuestions from "../data/quizQuestions.json";
+import ReactConfetti from "react-confetti";
 
 interface QuizWindowProps {
   onClose: () => void;
@@ -24,6 +25,8 @@ const QuizWindow: React.FC<QuizWindowProps> = ({
   const [score, setScore] = useState(0);
   const [showHint, setShowHint] = useState(false);
   const [isAnswerCorrect, setIsAnswerCorrect] = useState<boolean | null>(null);
+  const [confetti, setConfetti] = useState(false);
+  const windowRef = useRef<HTMLDivElement>(null);
 
   const question = quizQuestions[currentQuestionIndex];
 
@@ -37,6 +40,8 @@ const QuizWindow: React.FC<QuizWindowProps> = ({
 
     if (isCorrect) {
       setScore(score + 1);
+      setConfetti(true);
+      setTimeout(() => setConfetti(false), 2000);
     }
   };
 
@@ -63,6 +68,9 @@ const QuizWindow: React.FC<QuizWindowProps> = ({
     incorrect: { scale: 1.1, backgroundColor: "#E53E3E" },
   };
 
+  const confettiWidth = windowRef.current?.clientWidth || 500;
+  const confettiHeight = windowRef.current?.clientHeight || 500;
+
   return (
     <MacWindow
       title="Test Your Knowledge!"
@@ -72,6 +80,16 @@ const QuizWindow: React.FC<QuizWindowProps> = ({
       initialX={initialX}
       initialY={initialY}
     >
+      {confetti && (
+        <ReactConfetti
+          width={confettiWidth}
+          height={confettiHeight}
+          recycle={false}
+          numberOfPieces={250}
+          gravity={0.2}
+          colors={["#3182CE", "#38A169", "#E53E3E", "#D69E2E"]}
+        />
+      )}
       <Box
         bg={bg}
         p="4"
@@ -111,7 +129,13 @@ const QuizWindow: React.FC<QuizWindowProps> = ({
         </Flex>
         {selectedAnswer !== null && !isAnswerCorrect && (
           <Text color="red.500" mt="2">
-            Incorrect! {showHint && `Hint: ${question.hint}`}
+            Incorrect! The correct answer is:{" "}
+            {question.choices[question.correctAnswer]}
+          </Text>
+        )}
+        {showHint && (
+          <Text color={textColor} mt="2">
+            Hint: {question.hint}
           </Text>
         )}
         <Flex justify="space-between" mt="4">
