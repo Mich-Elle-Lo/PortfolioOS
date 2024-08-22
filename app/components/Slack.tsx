@@ -63,10 +63,10 @@ const Slack: React.FC<SlackProps> = ({
             💬
           </Text>
           <Text fontSize="30" fontWeight="bold" color={textColor}>
-            "Whoops, seems like there's no chatter here... yet!"
+            Whoops, seems like there&apos;s no chatter here... yet!
           </Text>
           <Text fontSize="20" mt="2" color={textColor}>
-            "Don't worry, the conversation will pick up soon! 🎉"
+            Don&apos;t worry, the conversation will pick up soon! 🎉
           </Text>
         </Flex>
       </Box>

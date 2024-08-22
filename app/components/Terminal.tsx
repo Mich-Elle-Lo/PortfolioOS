@@ -62,10 +62,10 @@ const Terminal: React.FC<TerminalProps> = ({
             ✋🏼
           </Text>
           <Text fontSize="30" fontWeight="bold" color={textColor}>
-            $ echo "Oops, nothing to see here... yet!"
+            $ echo Oops, nothing to see here... yet!
           </Text>
           <Text fontSize="20" mt="2" color={textColor}>
-            $ echo "But don't worry, exciting commands are on the way!"
+            $ echo But don&apos;t worry, exciting commands are on the way!
           </Text>
         </Flex>
       </Box>

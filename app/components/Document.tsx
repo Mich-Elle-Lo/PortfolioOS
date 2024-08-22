@@ -63,10 +63,10 @@ const Document: React.FC<DocumentProps> = ({
             📄
           </Text>
           <Text fontSize="30" fontWeight="bold" color={textColor}>
-            "Your documents are on the way!"
+            Your documents are on the way!
           </Text>
           <Text fontSize="20" mt="2" color={textColor}>
-            "Soon you'll be reading, writing, and creating... Stay tuned! 📝"
+            Soon you&apos;ll be reading, writing, and creating... Stay tuned! 📝
           </Text>
         </Flex>
       </Box>

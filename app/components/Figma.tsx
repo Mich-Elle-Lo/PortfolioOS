@@ -63,10 +63,10 @@ const Figma: React.FC<FigmaProps> = ({
             🎨
           </Text>
           <Text fontSize="30" fontWeight="bold" color={textColor}>
-            "Design inspiration is on the way!"
+            Design inspiration is on the way!
           </Text>
           <Text fontSize="20" mt="2" color={textColor}>
-            "Figma is warming up, stay tuned to get creative! 🌟"
+            Figma is warming up, stay tuned to get creative! 🌟
           </Text>
         </Flex>
       </Box>
