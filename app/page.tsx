@@ -32,10 +32,6 @@ export default function Home() {
     getZIndex,
   } = useWindowManagement();
 
-  useEffect(() => {
-    handleOpenApp("intro");
-  }, []);
-
   return (
     <MobileWarning>
       <Box
