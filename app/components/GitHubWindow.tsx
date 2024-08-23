@@ -8,16 +8,18 @@ import {
   Badge,
   Icon,
   Skeleton,
-  Tabs,
-  TabList,
-  TabPanels,
-  Tab,
-  TabPanel,
+  List,
+  ListItem,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { FaGithub } from "react-icons/fa";
 import MacWindow from "./MacWindow";
-import axios from "axios";
+import {
+  getUserProfile,
+  getUserRepos,
+  getUserEvents,
+  getUserLanguages,
+} from "../utils/api";
 
 interface GitHubWindowProps {
   onClose: () => void;
@@ -34,62 +36,44 @@ const GitHubWindow: React.FC<GitHubWindowProps> = ({
   initialX,
   initialY,
 }) => {
-  const [repos, setRepos] = useState<
-    {
-      id: number;
-      name: string;
-      description: string;
-      language: string;
-      stargazers_count: number;
-      forks_count: number;
-      html_url: string;
-    }[]
-  >([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const [profile, setProfile] = useState(null);
-  const [gists, setGists] = useState(null);
+  const [repos, setRepos] = useState<any[]>([]);
+  const [events, setEvents] = useState<any[]>([]);
+  const [languages, setLanguages] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  const username = "Mich-Elle-Lo"; // GitHub username
 
   const bgColor = useColorModeValue("gray.100", "gray.800");
   const textColor = useColorModeValue("black", "white");
   const borderColor = useColorModeValue("gray.300", "gray.700");
   const tabColor = useColorModeValue("blue.600", "blue.300");
 
-  const fetchRepos = async () => {
-    try {
-      const response = await axios.get(
-        "https://api.github.com/users/Mich-Elle-Lo/repos"
-      );
-      setRepos(response.data);
-    } catch (err: any) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-  const fetchProfile = async () => {
-    try {
-      const response = await axios.get(
-        "https://api.github.com/users/Mich-Elle-Lo"
-      );
-      setProfile(response.data);
-    } catch (err: any) {
-      setError(err.message);
-    }
-  };
-  const fetchGists = async () => {
-    try {
-      const response = await axios.get(
-        "https://api.github.com/users/Mich-Elle-Lo/gists"
-      );
-      setGists(response.data);
-    } catch (err: any) {
-      setError(err.message);
-    }
-  };
-  fetchGists();
-  fetchProfile();
-  fetchRepos();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const profileData = await getUserProfile(username);
+        const reposData = await getUserRepos(username);
+        const eventsData = await getUserEvents(username);
+        setProfile(profileData);
+        setRepos(reposData);
+        setEvents(eventsData);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        console.error("Having issues fetching GitHub data", err);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  console.log("profile", profile);
+  console.log("repos", repos);
+  console.log("events", events);
 
   return (
     <MacWindow
@@ -113,14 +97,6 @@ const GitHubWindow: React.FC<GitHubWindowProps> = ({
             Mich-Elle-Lo / Repositories
           </Heading>
         </Flex>
-        <Tabs variant="soft-rounded" colorScheme="blue">
-          <TabList>
-            <Tab color={tabColor}>Profile</Tab>
-            <Tab color={tabColor}>Repositories</Tab>
-            {/* <Tab color={tabColor}>Gists</Tab> */}
-            <Tab color={tabColor}>Organizations</Tab>
-          </TabList>
-        </Tabs>
         {loading && <Skeleton height="20px" mb="10px" />}
         {error && <Text color="red.500">Error fetching data: {error}</Text>}
         {repos.length > 0 && (
