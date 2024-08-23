@@ -95,7 +95,7 @@ const GitHubWindow: React.FC<GitHubWindowProps> = ({
     switch (selectedTab) {
       case "profile":
         return (
-          <VStack spacing={4} align="center" width="100%">
+          <VStack spacing={2} align="center" width="100%">
             {profile && (
               <>
                 <Avatar src={profile.avatar_url} size="2xl" />
@@ -112,7 +112,7 @@ const GitHubWindow: React.FC<GitHubWindowProps> = ({
                   flexDirection="column"
                   alignItems="center"
                 >
-                  <Text fontSize="lg" fontWeight="bold">
+                  <Text fontSize="lg" fontWeight="bold" paddingBottom={4}>
                     Contributions
                   </Text>
                   <GitHubCalendar
