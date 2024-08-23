@@ -103,9 +103,6 @@ const GitHubWindow: React.FC<GitHubWindowProps> = ({
                   {profile.name}
                 </Text>
                 <Text>{profile.bio}</Text>
-                {/* <Link href={profile.html_url} isExternal color="blue.300">
-                  View GitHub Profile
-                </Link> */}
                 <Box
                   width="100%"
                   display="flex"
