@@ -56,9 +56,37 @@ export const getUserEvents = async (username: string) => {
   return response.data;
 };
 
-export const getUserLanguages = async (username: string, repo: string) => {
-  const response = await axios.get(
-    `${GITHUB_API_BASE_URL}/repos/${username}/${repo}/languages`
-  );
+export const getRepoLanguages = async (repoUrl: string) => {
+  const response = await axios.get(repoUrl);
   return response.data;
+};
+
+export const getUserLanguages = async (username: string) => {
+  const repos = await getUserRepos(username);
+  const languagePromises = repos.map((repo: any) =>
+    axios.get(repo.languages_url)
+  );
+
+  const languagesResponses = await Promise.all(languagePromises);
+  const aggregatedLanguages: { [key: string]: number } = {};
+
+  languagesResponses.forEach(({ data }) => {
+    for (const [language, value] of Object.entries(data)) {
+      if (aggregatedLanguages[language]) {
+        aggregatedLanguages[language] += value as number;
+      } else {
+        aggregatedLanguages[language] = value as number;
+      }
+    }
+  });
+
+  // Format the data for the pie chart
+  const formattedLanguages = Object.keys(aggregatedLanguages).map(
+    (language) => ({
+      name: language,
+      value: aggregatedLanguages[language],
+    })
+  );
+
+  return formattedLanguages;
 };

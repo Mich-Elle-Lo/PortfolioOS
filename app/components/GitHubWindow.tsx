@@ -1,23 +1,24 @@
 import { useEffect, useState } from "react";
+import GitHubCalendar from "react-github-calendar";
+import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import {
   Box,
   Text,
   Link,
   Flex,
-  Heading,
   Badge,
-  Icon,
   Skeleton,
-  List,
-  ListItem,
+  VStack,
+  HStack,
+  Button,
+  Avatar,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { FaGithub } from "react-icons/fa";
 import MacWindow from "./MacWindow";
 import {
   getUserProfile,
   getUserRepos,
-  getUserEvents,
+  getRepoLanguages,
   getUserLanguages,
 } from "../utils/api";
 
@@ -39,16 +40,26 @@ const GitHubWindow: React.FC<GitHubWindowProps> = ({
   const [error, setError] = useState<string | null>(null);
   const [profile, setProfile] = useState(null);
   const [repos, setRepos] = useState<any[]>([]);
-  const [events, setEvents] = useState<any[]>([]);
   const [languages, setLanguages] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [selectedTab, setSelectedTab] = useState("profile");
 
   const username = "Mich-Elle-Lo"; // GitHub username
 
-  const bgColor = useColorModeValue("gray.100", "gray.800");
+  const bg = useColorModeValue("gray.100", "gray.800");
   const textColor = useColorModeValue("black", "white");
   const borderColor = useColorModeValue("gray.300", "gray.700");
   const tabColor = useColorModeValue("blue.600", "blue.300");
+  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+
+  const filterLastSixMonths = (contributions: any) => {
+    const sixMonthsAgo = new Date();
+    sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 5);
+
+    return contributions.filter(
+      (day: any) => new Date(day.date) > sixMonthsAgo
+    );
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -56,14 +67,21 @@ const GitHubWindow: React.FC<GitHubWindowProps> = ({
         setLoading(true);
         const profileData = await getUserProfile(username);
         const reposData = await getUserRepos(username);
-        const eventsData = await getUserEvents(username);
+        const languagesData = await getUserLanguages(username);
+        const reposWithLanguages = await Promise.all(
+          reposData.map(async (repo: any) => {
+            const repoLanguages = await getRepoLanguages(repo.languages_url);
+            return { ...repo, languages: repoLanguages };
+          })
+        );
         setProfile(profileData);
-        setRepos(reposData);
-        setEvents(eventsData);
-        setLoading(false);
+        setRepos(reposWithLanguages);
+        setLanguages(languagesData);
       } catch (err) {
-        setError(err.message);
+        setError("Uh oh! Error fetching GitHub data");
         console.error("Having issues fetching GitHub data", err);
+        setLoading(false);
+      } finally {
         setLoading(false);
       }
     };
@@ -71,74 +89,165 @@ const GitHubWindow: React.FC<GitHubWindowProps> = ({
     fetchData();
   }, []);
 
-  console.log("profile", profile);
-  console.log("repos", repos);
-  console.log("events", events);
+  console.log(repos);
+
+  const renderContent = () => {
+    switch (selectedTab) {
+      case "profile":
+        return (
+          <VStack spacing={4} align="center" width="100%">
+            {profile && (
+              <>
+                <Avatar src={profile.avatar_url} size="2xl" />
+                <Text fontSize="2xl" fontWeight="bold">
+                  {profile.name}
+                </Text>
+                <Text>{profile.bio}</Text>
+                {/* <Link href={profile.html_url} isExternal color="blue.300">
+                  View GitHub Profile
+                </Link> */}
+                <Box
+                  width="100%"
+                  display="flex"
+                  flexDirection="column"
+                  alignItems="center"
+                >
+                  <Text fontSize="lg" fontWeight="bold">
+                    Contributions
+                  </Text>
+                  <GitHubCalendar
+                    username="Mich-Elle-Lo"
+                    transformData={filterLastSixMonths}
+                  />
+                </Box>
+              </>
+            )}
+          </VStack>
+        );
+      case "repos":
+        return (
+          <VStack spacing={2} align="start">
+            {repos.map((repo: any) => (
+              <Box
+                key={repo.id}
+                p={2}
+                bg="gray.800"
+                borderRadius="md"
+                width="100%"
+              >
+                <Link
+                  href={repo.html_url}
+                  isExternal
+                  color="blue.300"
+                  fontWeight="bold"
+                >
+                  {repo.name}
+                </Link>
+                <Text>{repo.description || "No description provided."}</Text>
+                <HStack mt={2} spacing={4}>
+                  <Box>
+                    <Text>Languages:</Text>
+                    {repo.languages &&
+                      Object.keys(repo.languages).map((lang) => (
+                        <Badge key={lang} colorScheme="teal" mr={2}>
+                          {lang}
+                        </Badge>
+                      ))}
+                  </Box>
+                </HStack>
+              </Box>
+            ))}
+          </VStack>
+        );
+      case "languages":
+        return (
+          <VStack spacing={5} align="center" width="100%">
+            <Box
+              width="100%"
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              gap={4}
+            >
+              <Text fontSize="lg" fontWeight="bold">
+                Top Languages
+              </Text>
+              {languages.length > 0 ? (
+                <PieChart width={300} height={300}>
+                  <Pie
+                    data={languages}
+                    dataKey="value"
+                    nameKey="name"
+                    outerRadius={80}
+                    fill="#8884d8"
+                    label
+                  >
+                    {languages.map((entry: any, index: number) => (
+                      <Cell
+                        key={`cell-${index}`}
+                        fill={COLORS[index % COLORS.length]}
+                      />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                  <Legend />
+                </PieChart>
+              ) : (
+                <Text>No language data available</Text>
+              )}
+            </Box>
+          </VStack>
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <MacWindow
-      title="GitHub - Mich-Elle-Lo Repositories"
+      title="GitHub - Mich-Elle-Lo"
       onClose={onClose}
       onClick={onClick}
       zIndex={zIndex}
       initialX={initialX}
       initialY={initialY}
     >
-      <Box
-        height="100%"
-        width="100%"
-        // overflow="hidden"
-        overflow="auto"
-        p="1rem"
-      >
-        <Flex alignItems="center" mb="1.5rem" color="white">
-          <Icon as={FaGithub} boxSize={8} />
-          <Heading as="h1" size="lg" ml="1rem">
-            Mich-Elle-Lo / Repositories
-          </Heading>
-        </Flex>
-        {loading && <Skeleton height="20px" mb="10px" />}
-        {error && <Text color="red.500">Error fetching data: {error}</Text>}
-        {repos.length > 0 && (
-          <Box>
-            {repos.map((repo) => (
-              <Box
-                key={repo.id}
-                mb="1rem"
-                p="1rem"
-                border="1px"
-                borderColor="gray.700"
-                borderRadius="md"
-                bg="gray.800"
+      <Box height="100%" width="100%" overflow="hidden" p="1rem" bg={bg}>
+        <Flex height="100%">
+          <Box
+            width="8rem"
+            p="4"
+            borderRight="1px solid"
+            borderColor="gray.500"
+          >
+            <VStack align="start" spacing={4}>
+              <Button
+                variant="link"
+                onClick={() => setSelectedTab("profile")}
+                colorScheme={selectedTab === "profile" ? "blue" : "gray"}
               >
-                <Flex justifyContent="space-between" alignItems="center">
-                  <Box>
-                    <Link
-                      href={repo.html_url}
-                      isExternal
-                      fontSize="lg"
-                      fontWeight="bold"
-                      color="blue.300"
-                      _hover={{ textDecoration: "underline" }}
-                    >
-                      {repo.name}
-                    </Link>
-                    <Text color="gray.400">
-                      {repo.description || "No description provided."}
-                    </Text>
-                  </Box>
-                  <Badge colorScheme="green" fontSize="0.8em">
-                    {repo.language || "N/A"}
-                  </Badge>
-                </Flex>
-                <Flex mt="0.5rem" color="gray.500">
-                  <Text mr="1.5rem">{repo.stargazers_count} Stars</Text>
-                  <Text>{repo.forks_count} Forks</Text>
-                </Flex>
-              </Box>
-            ))}
+                Profile
+              </Button>
+              <Button
+                variant="link"
+                onClick={() => setSelectedTab("repos")}
+                colorScheme={selectedTab === "repos" ? "blue" : "gray"}
+              >
+                Repos
+              </Button>
+              <Button
+                variant="link"
+                onClick={() => setSelectedTab("languages")}
+                colorScheme={selectedTab === "languages" ? "blue" : "gray"}
+              >
+                Languages
+              </Button>
+            </VStack>
           </Box>
-        )}
+          <Box flex="1" p="4" overflowY="auto">
+            {loading ? <Skeleton height="20px" /> : renderContent()}
+          </Box>
+        </Flex>
       </Box>
     </MacWindow>
   );
