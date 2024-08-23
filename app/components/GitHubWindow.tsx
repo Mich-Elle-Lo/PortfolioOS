@@ -8,6 +8,12 @@ import {
   Badge,
   Icon,
   Skeleton,
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { FaGithub } from "react-icons/fa";
 import MacWindow from "./MacWindow";
@@ -41,23 +47,49 @@ const GitHubWindow: React.FC<GitHubWindowProps> = ({
   >([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [profile, setProfile] = useState(null);
+  const [gists, setGists] = useState(null);
 
-  useEffect(() => {
-    const fetchRepos = async () => {
-      try {
-        const response = await axios.get(
-          "https://api.github.com/users/Mich-Elle-Lo/repos"
-        );
-        setRepos(response.data);
-      } catch (err: any) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const bgColor = useColorModeValue("gray.100", "gray.800");
+  const textColor = useColorModeValue("black", "white");
+  const borderColor = useColorModeValue("gray.300", "gray.700");
+  const tabColor = useColorModeValue("blue.600", "blue.300");
 
-    fetchRepos();
-  }, []);
+  const fetchRepos = async () => {
+    try {
+      const response = await axios.get(
+        "https://api.github.com/users/Mich-Elle-Lo/repos"
+      );
+      setRepos(response.data);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const fetchProfile = async () => {
+    try {
+      const response = await axios.get(
+        "https://api.github.com/users/Mich-Elle-Lo"
+      );
+      setProfile(response.data);
+    } catch (err: any) {
+      setError(err.message);
+    }
+  };
+  const fetchGists = async () => {
+    try {
+      const response = await axios.get(
+        "https://api.github.com/users/Mich-Elle-Lo/gists"
+      );
+      setGists(response.data);
+    } catch (err: any) {
+      setError(err.message);
+    }
+  };
+  fetchGists();
+  fetchProfile();
+  fetchRepos();
 
   return (
     <MacWindow
@@ -81,6 +113,14 @@ const GitHubWindow: React.FC<GitHubWindowProps> = ({
             Mich-Elle-Lo / Repositories
           </Heading>
         </Flex>
+        <Tabs variant="soft-rounded" colorScheme="blue">
+          <TabList>
+            <Tab color={tabColor}>Profile</Tab>
+            <Tab color={tabColor}>Repositories</Tab>
+            {/* <Tab color={tabColor}>Gists</Tab> */}
+            <Tab color={tabColor}>Organizations</Tab>
+          </TabList>
+        </Tabs>
         {loading && <Skeleton height="20px" mb="10px" />}
         {error && <Text color="red.500">Error fetching data: {error}</Text>}
         {repos.length > 0 && (
