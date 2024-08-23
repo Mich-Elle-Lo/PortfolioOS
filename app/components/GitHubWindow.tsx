@@ -38,7 +38,7 @@ const GitHubWindow: React.FC<GitHubWindowProps> = ({
   initialY,
 }) => {
   const [error, setError] = useState<string | null>(null);
-  const [profile, setProfile] = useState(null);
+  const [profile, setProfile] = useState<any>(null);
   const [repos, setRepos] = useState<any[]>([]);
   const [languages, setLanguages] = useState<any>(null);
   const [loading, setLoading] = useState(true);
