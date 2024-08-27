@@ -6,7 +6,6 @@ import {
   Flex,
   IconButton,
   Input,
-  Text,
   Textarea,
   HStack,
   useColorModeValue,
@@ -116,6 +115,9 @@ const MailWindow = ({
             mb="2"
             colorScheme="blue"
             aria-label="Send"
+            onClick={handleSubmit}
+            isLoading={loading}
+            isDisabled={!email || !message || !senderName || !subject}
           />
         </Flex>
 
@@ -125,22 +127,37 @@ const MailWindow = ({
           color={textColor}
           isDisabled
         />
-
         <Input
-          placeholder="Cc:"
+          placeholder="Your name"
           border="none"
           bg={formBg}
           mb="2"
           color={textColor}
+          value={senderName}
+          onChange={handleNameChange}
           _focus={{ boxShadow: "none" }}
-          isDisabled
+          _placeholder={{ color: placeholderColor }}
+        />
+        <Input
+          placeholder="Your email"
+          border="none"
+          bg={formBg}
+          mb="2"
+          color={textColor}
+          value={email}
+          onChange={handleEmailChange}
+          _focus={{ boxShadow: "none" }}
+          _placeholder={{ color: placeholderColor }}
         />
         <Input
           placeholder="Subject:"
           border="none"
           bg={formBg}
           color={textColor}
+          value={subject}
+          onChange={handleSubjectChange}
           _focus={{ boxShadow: "none" }}
+          _placeholder={{ color: placeholderColor }}
         />
 
         <Box borderBottom={`1px solid ${borderColor}`} p="1rem" mb="4" pb="2">
@@ -152,6 +169,9 @@ const MailWindow = ({
             resize="none"
             height="250px"
             _focus={{ boxShadow: "none" }}
+            value={message}
+            onChange={handleMessageChange}
+            _placeholder={{ color: placeholderColor }}
           />
         </Box>
       </Box>
