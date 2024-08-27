@@ -16,7 +16,7 @@ import {
 import { CgGirl } from "react-icons/cg";
 import { SiNotion, SiVisualstudiocode, SiJira } from "react-icons/si";
 
-export const dockIcons = [
+export const DesktopDockIcons = [
   { icon: FaApple, label: "Finder", action: "finder" },
   { icon: FaEnvelope, label: "Email Me", action: "email" },
   { icon: FaFolderOpen, label: "Files", action: "files" },

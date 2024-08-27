@@ -3,7 +3,7 @@ import styles from "../styles/Dock.module.scss";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Box, Icon, useColorMode, Tooltip } from "@chakra-ui/react";
-import { dockIcons } from "../config/icons";
+import { DesktopDockIcons } from "../config/desktopDockIcons";
 
 const Dock = ({ onOpenApp }: { onOpenApp: (app: string) => void }) => {
   const { colorMode } = useColorMode();
@@ -51,7 +51,7 @@ const Dock = ({ onOpenApp }: { onOpenApp: (app: string) => void }) => {
         className={styles.dock}
         bg={colorMode === "light" ? "gray.400" : "gray.700"}
       >
-        {dockIcons.map(({ icon, label, action }) => (
+        {DesktopDockIcons.map(({ icon, label, action }) => (
           <Tooltip
             label={label}
             key={label}
