@@ -7,6 +7,7 @@ import {
   IconButton,
   Input,
   Textarea,
+  Text,
   HStack,
   useColorModeValue,
 } from "@chakra-ui/react";
@@ -67,15 +68,25 @@ const MailWindow = ({
       initialX={initialX}
       initialY={initialY}
     >
-      <Box height="100%" width="100%" overflow="auto" p="1rem">
+      <Box height="100%" width="100%" overflow="auto">
+        <Text
+          fontSize="md"
+          fontWeight="bold"
+          mb="2"
+          mt="2"
+          textAlign="center"
+          color={textColor}
+        >
+          Got Feedback? Or Need a Developer? 👩🏻‍💻
+        </Text>
         <Flex
           align="center"
-          mt="4"
-          mb="4"
+          justifyContent="center"
+          mt="2"
+          mb="2"
           borderTop="1px solid"
           borderBottom="1px solid"
           borderColor={borderColor}
-          pt="2"
         >
           <HStack spacing="4">
             <IconButton
@@ -113,6 +124,7 @@ const MailWindow = ({
             icon={<AiOutlineSend />}
             size="sm"
             mb="2"
+            mt="2"
             colorScheme="blue"
             aria-label="Send"
             onClick={handleSubmit}
@@ -123,15 +135,16 @@ const MailWindow = ({
 
         <Input
           placeholder="To: Michelle Lo"
-          bg={inputBg}
           color={textColor}
           isDisabled
+          mb="1"
+          _placeholder={{ color: placeholderColor }}
         />
         <Input
           placeholder="Your name"
           border="none"
           bg={formBg}
-          mb="2"
+          mb="1"
           color={textColor}
           value={senderName}
           onChange={handleNameChange}
@@ -142,7 +155,7 @@ const MailWindow = ({
           placeholder="Your email"
           border="none"
           bg={formBg}
-          mb="2"
+          mb="1"
           color={textColor}
           value={email}
           onChange={handleEmailChange}
