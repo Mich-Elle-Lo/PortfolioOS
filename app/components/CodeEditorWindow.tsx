@@ -59,12 +59,11 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
         boxShadow="md"
         width="100%"
         height="100%"
-        p="4"
       >
         <Editor
           height="100%"
           defaultLanguage="javascript"
-          defaultValue="// Write your code here"
+          defaultValue="// Write your JavaScript code here"
           theme={editorTheme}
           onChange={(value) => setCode(value || "")}
           options={{
@@ -80,7 +79,13 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
           }}
         />
 
-        <Button colorScheme="blue" mt="4" mb="4" onClick={() => runCode(code)}>
+        <Button
+          colorScheme="blue"
+          pt="1"
+          pb="1"
+          borderRadius={0}
+          onClick={() => runCode(code)}
+        >
           Run Code
         </Button>
 
@@ -92,6 +97,8 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
           color={textColor}
           width="100%"
           height="100%"
+          borderRadius={0}
+          resize={"none"}
         />
       </Flex>
     </MacWindow>
