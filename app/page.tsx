@@ -17,7 +17,7 @@ import Finder from "./components/Finder";
 import Terminal from "./components/Terminal";
 import Slack from "./components/Slack";
 import Figma from "./components/Figma";
-import Document from "./components/Document";
+import CodeEditor from "./components/CodeEditorWindow";
 import { Box, useColorMode } from "@chakra-ui/react";
 import { useWindowManagement } from "./hooks/useWindowManagement";
 
@@ -90,8 +90,8 @@ export default function Home() {
               return <Slack {...commonProps} key={app} />;
             case "figma":
               return <Figma {...commonProps} key={app} />;
-            case "document":
-              return <Document {...commonProps} key={app} />;
+            case "editor":
+              return <CodeEditor {...commonProps} key={app} />;
             default:
               return null;
           }

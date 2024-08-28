@@ -28,7 +28,7 @@ export const DesktopDockIcons = [
   { icon: FaSlack, label: "Slack", action: "slack" },
   // { icon: SiNotion, label: "Notion", action: "notion" },
   { icon: FaGithub, label: "GitHub", action: "github" },
-  { icon: FaFileAlt, label: "Document", action: "document" },
+  { icon: FaFileAlt, label: "Code Editor", action: "editor" },
   // { icon: SiJira, label: "Jira", action: "jira" },
   { icon: FaFigma, label: "Figma", action: "figma" },
   { icon: FaQuestionCircle, label: "Quiz", action: "quiz" },
