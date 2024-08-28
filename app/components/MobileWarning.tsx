@@ -1,13 +1,21 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Box, Text, Center, IconButton, Flex } from "@chakra-ui/react";
+import {
+  Box,
+  Text,
+  Center,
+  IconButton,
+  Flex,
+  useColorMode,
+} from "@chakra-ui/react";
 import { mobileDockIcons, mobileBackgroundIcons } from "../config/mobileIcons";
 
 import { ReactNode } from "react";
 
 const MobileWarning = ({ children }: { children: ReactNode }) => {
   const [isMobile, setIsMobile] = useState(false);
+  const { colorMode } = useColorMode();
 
   useEffect(() => {
     const handleResize = () => {
@@ -22,14 +30,39 @@ const MobileWarning = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return isMobile ? (
-    <Box width="100%" height="100vh" bg="gray.400" color="white">
-      <Flex flexWrap="wrap" justifyContent="center" p="1rem" gap="1rem">
+    <Box
+      width="100vw"
+      height="100vh"
+      overflow="hidden"
+      position="relative"
+      mx="auto"
+      style={{
+        height: "100vh",
+        paddingTop: "60px",
+        backgroundImage:
+          colorMode === "light"
+            ? "url('/lightbg.jpeg')"
+            : "url('/darkbg.jpeg')",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center center",
+        position: "relative",
+      }}
+      // mt="5rem"
+    >
+      <Flex
+        flexWrap="wrap"
+        justifyContent="center"
+        p="1rem"
+        gap="2rem"
+        rowGap="2.5rem"
+      >
         {mobileBackgroundIcons.map((icon, index) => (
           <Box key={index} textAlign="center">
             <IconButton
               icon={<icon.icon />}
               aria-label={icon.label}
-              fontSize="24px"
+              fontSize="32px"
               color="white"
               variant="ghost"
               mb="0.5rem"
