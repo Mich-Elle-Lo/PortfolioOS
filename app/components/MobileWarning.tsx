@@ -1,5 +1,5 @@
 "use client";
-
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import {
   Box,
@@ -73,6 +73,37 @@ const MobileWarning = ({ children }: { children: ReactNode }) => {
           </Box>
         ))}
       </Flex>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 1,
+          ease: "easeInOut",
+          // repeat: Infinity,
+          // repeatType: "reverse",
+        }}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Text
+          fontSize="xl"
+          fontWeight="bold"
+          color="white"
+          textAlign="center"
+          mt="50%"
+        >
+          Full mobile version coming soon! Please view on desktop for full
+          experience!
+        </Text>
+      </motion.div>
       <Flex
         position="absolute"
         bottom="0"
