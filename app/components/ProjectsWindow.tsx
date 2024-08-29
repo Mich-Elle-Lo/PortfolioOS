@@ -34,14 +34,14 @@ const projectsData: Project[] = [
     name: "DevSpace",
     content: "A social media platform for developers. Made with React Native",
     icon: FaCode,
-    imageUrl: "",
+    imageUrl: "/comingSoon.jpeg",
   },
   {
     id: 2,
     name: "BrainFlix",
     content: "A band site with video streaming. Made with React",
     icon: FaDatabase,
-    imageUrl: "/path/to/project2-screenshot.png",
+    imageUrl: "/comingSoon.jpeg",
   },
   {
     id: 3,
@@ -49,7 +49,21 @@ const projectsData: Project[] = [
     content:
       "A chat application. Made with React, Node.js, Express, and Socket.io",
     icon: FaFileAlt,
-    imageUrl: "",
+    imageUrl: "/comingSoon.jpeg",
+  },
+  {
+    id: 4,
+    name: "Portfolio",
+    content: "My personal portfolio site. Made with Next.js",
+    icon: FaFolder,
+    imageUrl: "/comingSoon.jpeg",
+  },
+  {
+    id: 5,
+    name: "WeatherApp",
+    content: "A weather application. Made with React Native",
+    icon: FaCode,
+    imageUrl: "/comingSoon.jpeg",
   },
 ];
 
