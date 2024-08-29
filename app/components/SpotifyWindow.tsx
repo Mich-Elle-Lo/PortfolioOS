@@ -2,10 +2,7 @@ import { useState } from "react";
 import {
   Box,
   useColorMode,
-  Text,
-  Link,
   Flex,
-  Badge,
   Skeleton,
   VStack,
   HStack,
@@ -13,7 +10,6 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import MacWindow from "./MacWindow";
-import { color } from "framer-motion";
 
 interface SpotifyWindowProps {
   onClose: () => void;
@@ -36,7 +32,7 @@ const SpotifyWindow: React.FC<SpotifyWindowProps> = ({
 
   const bg = useColorModeValue("gray.100", "gray.800");
 
-  const iframeSources = {
+  const iframeSources: { [key: string]: string } = {
     portfolioJams:
       "https://open.spotify.com/embed/playlist/1K6znuBPBNo6Kpaizo6pyh?utm_source=generator",
     chineseClassics:
@@ -81,12 +77,6 @@ const SpotifyWindow: React.FC<SpotifyWindowProps> = ({
     >
       <Box height="100%" width="100%" overflow="hidden" p=".5rem" bg={bg}>
         <Flex direction="column" height="100%" align="center" width="100%">
-          {/* <Box
-            width="10rem"
-            p="2"
-            borderRight="1px solid"
-            borderColor="gray.500"
-          > */}
           <HStack align="center" spacing={4} w="100%" justify="center">
             <Button
               variant="ghost"
@@ -103,7 +93,6 @@ const SpotifyWindow: React.FC<SpotifyWindowProps> = ({
               Chinese Classics
             </Button>
           </HStack>
-          {/* </Box> */}
           <Box flex="1" overflowY="auto" w="100%">
             {renderContent()}
           </Box>
