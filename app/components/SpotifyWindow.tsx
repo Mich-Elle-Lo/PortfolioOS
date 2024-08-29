@@ -50,15 +50,15 @@ const SpotifyWindow: React.FC<SpotifyWindowProps> = ({
             src={`${iframeSources[selectedTab]}${
               colorMode === "light" ? "" : "&theme=0"
             }`}
-            width="102%"
-            height="101%"
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
             loading="lazy"
             style={{
-              marginLeft: "-5",
               width: "101%",
-              alignSelf: "center",
-              marginTop: ".2rem",
+              height: "101%",
+              border: "none",
+              margin: "-.2rem",
+              boxSizing: "border-box",
+              borderRadius: "0",
             }}
           ></iframe>
         </Box>
@@ -75,7 +75,7 @@ const SpotifyWindow: React.FC<SpotifyWindowProps> = ({
       initialX={initialX}
       initialY={initialY}
     >
-      <Box height="100%" width="100%" overflow="hidden" p=".5rem" bg={bg}>
+      <Box height="100%" width="100%" overflow="hidden" bg={bg}>
         <Flex direction="column" height="100%" align="center" width="100%">
           <HStack align="center" spacing={4} w="100%" justify="center">
             <Button
@@ -93,7 +93,7 @@ const SpotifyWindow: React.FC<SpotifyWindowProps> = ({
               Chinese Classics
             </Button>
           </HStack>
-          <Box flex="1" overflowY="auto" w="100%">
+          <Box flex="1" w="100%">
             {renderContent()}
           </Box>
         </Flex>
