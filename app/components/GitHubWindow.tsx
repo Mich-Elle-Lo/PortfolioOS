@@ -89,8 +89,6 @@ const GitHubWindow: React.FC<GitHubWindowProps> = ({
     fetchData();
   }, []);
 
-  console.log(repos);
-
   const renderContent = () => {
     switch (selectedTab) {
       case "profile":
