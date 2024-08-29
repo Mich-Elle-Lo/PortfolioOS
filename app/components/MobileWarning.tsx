@@ -36,7 +36,7 @@ const MobileWarning = ({ children }: { children: ReactNode }) => {
       position="relative"
       mx="auto"
       style={{
-        height: "100vh",
+        // height: "100vh",
         paddingTop: "20px",
         backgroundImage:
           colorMode === "light"
