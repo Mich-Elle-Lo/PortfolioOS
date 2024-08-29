@@ -32,89 +32,48 @@ const SpotifyWindow: React.FC<SpotifyWindowProps> = ({
 }) => {
   const { colorMode } = useColorMode();
   const [selectedTab, setSelectedTab] = useState("portfolioJams");
-  const [portfolioJams, setPortfolioJams] = useState<any>(null);
-  const [chineseClassics, setChineseClassics] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
+  // const [portfolioJams, setPortfolioJams] = useState<any>(null);
+  // const [chineseClassics, setChineseClassics] = useState<any>(null);
+  const [loading, setLoading] = useState(false);
 
   const bg = useColorModeValue("gray.100", "gray.800");
-  const textColor = useColorModeValue("black", "white");
-  const borderColor = useColorModeValue("gray.300", "gray.700");
-  const tabColor = useColorModeValue("blue.600", "blue.300");
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+  // const textColor = useColorModeValue("black", "white");
+  // const borderColor = useColorModeValue("gray.300", "gray.700");
+  // const tabColor = useColorModeValue("blue.600", "blue.300");
+  // const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
+  const iframeSources = {
+    portfolioJams:
+      "https://open.spotify.com/embed/playlist/1K6znuBPBNo6Kpaizo6pyh?utm_source=generator",
+    chineseClassics:
+      "https://open.spotify.com/embed/playlist/2yBX8PoP29NwMhBpy46yy6?utm_source=generator",
+  };
   const renderContent = () => {
-    switch (selectedTab) {
-      case "portfolioJams":
-        return (
-          <VStack spacing={2} align="center" width="100%">
-            {portfolioJams && (
-              <Box height="100%" width="100%" overflow="hidden">
-                {colorMode === "light" ? (
-                  <iframe
-                    src="https://open.spotify.com/embed/playlist/1K6znuBPBNo6Kpaizo6pyh?utm_source=generator"
-                    width="101%"
-                    height="101%"
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy"
-                    style={{
-                      borderRadius: "0",
-                      margin: "-3px",
-                    }}
-                  ></iframe>
-                ) : (
-                  <iframe
-                    src="https://open.spotify.com/embed/playlist/1K6znuBPBNo6Kpaizo6pyh?utm_source=generator&theme=0"
-                    width="101%"
-                    height="101%"
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy"
-                    style={{
-                      borderRadius: "0",
-                      margin: "-3px",
-                    }}
-                  ></iframe>
-                )}
-              </Box>
-            )}
-          </VStack>
-        );
-      case "chineseClassics":
-        return (
-          <VStack spacing={2} align="center" width="100%">
-            {portfolioJams && (
-              <Box height="100%" width="100%" overflow="hidden">
-                {colorMode === "light" ? (
-                  <iframe
-                    src="https://open.spotify.com/embed/playlist/1K6znuBPBNo6Kpaizo6pyh?utm_source=generator"
-                    width="101%"
-                    height="101%"
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy"
-                    style={{
-                      borderRadius: "0",
-                      margin: "-3px",
-                    }}
-                  ></iframe>
-                ) : (
-                  <iframe
-                    src="https://open.spotify.com/embed/playlist/1K6znuBPBNo6Kpaizo6pyh?utm_source=generator&theme=0"
-                    width="101%"
-                    height="101%"
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy"
-                    style={{
-                      borderRadius: "0",
-                      margin: "-3px",
-                    }}
-                  ></iframe>
-                )}
-              </Box>
-            )}
-          </VStack>
-        );
-      default:
-        return null;
+    if (loading) {
+      return <Skeleton height="20px" />;
     }
+
+    return (
+      <VStack align="center" width="100%" height="100%">
+        <Box height="100%" width="100%" overflow="hidden" p="0">
+          <iframe
+            src={`${iframeSources[selectedTab]}${
+              colorMode === "light" ? "" : "&theme=0"
+            }`}
+            width="102%"
+            height="101%"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+            style={{
+              marginLeft: "-5",
+              width: "101%",
+              alignSelf: "center",
+              marginTop: ".2rem",
+            }}
+          ></iframe>
+        </Box>
+      </VStack>
+    );
   };
 
   return (
@@ -127,34 +86,32 @@ const SpotifyWindow: React.FC<SpotifyWindowProps> = ({
       initialY={initialY}
     >
       <Box height="100%" width="100%" overflow="hidden" p=".5rem" bg={bg}>
-        <Flex height="100%">
-          <Box
+        <Flex direction="column" height="100%" align="center" width="100%">
+          {/* <Box
             width="10rem"
             p="2"
             borderRight="1px solid"
             borderColor="gray.500"
-          >
-            <VStack align="start" spacing={4}>
-              <Button
-                variant="link"
-                onClick={() => setSelectedTab("portfolioJams")}
-                colorScheme={selectedTab === "portfolioJams" ? "blue" : "gray"}
-              >
-                Portfolio Jams
-              </Button>
-              <Button
-                variant="link"
-                onClick={() => setSelectedTab("chineseClassics")}
-                colorScheme={
-                  selectedTab === "chineseClassics" ? "blue" : "gray"
-                }
-              >
-                Chinese Classics
-              </Button>
-            </VStack>
-          </Box>
-          <Box flex="1" p="4" overflowY="auto">
-            {loading ? <Skeleton height="20px" /> : renderContent()}
+          > */}
+          <HStack align="center" spacing={4} w="100%" justify="center">
+            <Button
+              variant="ghost"
+              onClick={() => setSelectedTab("portfolioJams")}
+              colorScheme={selectedTab === "portfolioJams" ? "blue" : "gray"}
+            >
+              Portfolio Jams
+            </Button>
+            <Button
+              variant="ghost"
+              onClick={() => setSelectedTab("chineseClassics")}
+              colorScheme={selectedTab === "chineseClassics" ? "blue" : "gray"}
+            >
+              Chinese Classics
+            </Button>
+          </HStack>
+          {/* </Box> */}
+          <Box flex="1" overflowY="auto" w="100%">
+            {renderContent()}
           </Box>
         </Flex>
       </Box>
