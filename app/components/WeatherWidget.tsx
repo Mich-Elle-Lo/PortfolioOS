@@ -47,7 +47,7 @@ const WeatherWidget = () => {
     const fetchWeatherData = async () => {
       try {
         const response = await axios.get(
-          `https://api.openweathermap.org/data/2.5/weather?lat=43.65107&lon=-79.347015&units=metric&appid=${process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY}&units=metric`
+          `https://api.openweathermap.org/data/2.5/weather?lat=43.7001&lon=-79.4163&units=metric&appid=${process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY}&units=metric`
         );
         console.log("Weather API Response:", response.data);
         setWeatherData(response.data);
@@ -78,7 +78,7 @@ const WeatherWidget = () => {
       default={{
         x: 100,
         y: 100,
-        width: 300,
+        width: 0,
         height: collapsed ? 50 : 400,
       }}
       minHeight={50}
@@ -86,13 +86,15 @@ const WeatherWidget = () => {
       bounds="parent"
     >
       <Box
-        p="4"
+        p="3"
         borderRadius="md"
         bg={formBg}
         color="white"
         width="15rem"
         boxShadow="md"
         textAlign="center"
+        opacity="60%"
+        cursor={collapsed ? "pointer" : "default"}
       >
         <IconButton
           icon={collapsed ? <FaChevronDown /> : <FaChevronUp />}
