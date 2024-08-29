@@ -32,21 +32,15 @@ const SpotifyWindow: React.FC<SpotifyWindowProps> = ({
 }) => {
   const { colorMode } = useColorMode();
   const [selectedTab, setSelectedTab] = useState("portfolioJams");
-  // const [portfolioJams, setPortfolioJams] = useState<any>(null);
-  // const [chineseClassics, setChineseClassics] = useState<any>(null);
   const [loading, setLoading] = useState(false);
 
   const bg = useColorModeValue("gray.100", "gray.800");
-  // const textColor = useColorModeValue("black", "white");
-  // const borderColor = useColorModeValue("gray.300", "gray.700");
-  // const tabColor = useColorModeValue("blue.600", "blue.300");
-  // const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
   const iframeSources = {
     portfolioJams:
       "https://open.spotify.com/embed/playlist/1K6znuBPBNo6Kpaizo6pyh?utm_source=generator",
     chineseClassics:
-      "https://open.spotify.com/embed/playlist/2yBX8PoP29NwMhBpy46yy6?utm_source=generator",
+      "https://open.spotify.com/embed/playlist/2yvUoEUTuIR3eifunOvaOY?utm_source=generator",
   };
   const renderContent = () => {
     if (loading) {
