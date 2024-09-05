@@ -37,6 +37,7 @@ export default function Home() {
       <Box
         style={{
           height: "100vh",
+          width: "100vw",
           paddingTop: "60px",
           backgroundImage:
             colorMode === "light"

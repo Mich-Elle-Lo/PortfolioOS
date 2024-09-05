@@ -74,100 +74,102 @@ const WeatherWidget = () => {
   const iconUrl = `http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`;
 
   return (
-    <Rnd
-      default={{
-        x: 100,
-        y: 100,
-        width: 0,
-        height: collapsed ? 50 : 400,
-      }}
-      minHeight={50}
-      minWidth={150}
-      bounds="parent"
-    >
-      <Box
-        p="3"
-        borderRadius="md"
-        bg={formBg}
-        color="white"
-        width="15rem"
-        boxShadow="md"
-        textAlign="center"
-        opacity="60%"
-        cursor={collapsed ? "pointer" : "default"}
+    <Box style={{ width: "95vw", height: "90vh", position: "relative" }}>
+      <Rnd
+        default={{
+          x: 100,
+          y: 100,
+          width: 0,
+          height: collapsed ? 50 : 400,
+        }}
+        minHeight={50}
+        minWidth={150}
+        bounds="parent"
       >
-        <IconButton
-          icon={collapsed ? <FaChevronDown /> : <FaChevronUp />}
-          size="xs"
-          onClick={toggleCollapse}
-          position="absolute"
-          top="2px"
-          left="13rem"
-          aria-label="Toggle collapse"
-          bg="transparent"
-          _hover={{ bg: "transparent" }}
+        <Box
+          p="3"
+          borderRadius="md"
+          bg={formBg}
           color="white"
-        />
-        {loading ? (
-          <Flex justify="center" align="center" height="100%">
-            <Spinner size="xl" color="white" />
-          </Flex>
-        ) : error ? (
-          <Text>{error}</Text>
-        ) : collapsed ? (
-          <Text fontWeight="bold">Weather</Text>
-        ) : (
-          <>
-            <Text fontSize="xl" fontWeight="bold">
-              {weatherData.name}, {weatherData.sys.country}
-            </Text>
-            <Flex justify="center" align="center" mt="2">
-              <Image
-                src={iconUrl}
-                alt={weatherData.weather[0].description}
-                boxSize="80px"
-              />
-              <Text fontSize="4xl" ml="3">
-                {temperature}°C
-              </Text>
+          width="15rem"
+          boxShadow="md"
+          textAlign="center"
+          opacity="60%"
+          cursor={collapsed ? "pointer" : "default"}
+        >
+          <IconButton
+            icon={collapsed ? <FaChevronDown /> : <FaChevronUp />}
+            size="xs"
+            onClick={toggleCollapse}
+            position="absolute"
+            top="2px"
+            left="13rem"
+            aria-label="Toggle collapse"
+            bg="transparent"
+            _hover={{ bg: "transparent" }}
+            color="white"
+          />
+          {loading ? (
+            <Flex justify="center" align="center" height="100%">
+              <Spinner size="xl" color="white" />
             </Flex>
-            <Text fontSize="md" mt="1" fontStyle="italic">
-              {weatherData.weather[0].description}
-            </Text>
-            <Text mt="2">
-              Feels like:{" "}
-              <Text as="span" fontWeight="bold">
-                {feelsLike}°C
+          ) : error ? (
+            <Text>{error}</Text>
+          ) : collapsed ? (
+            <Text fontWeight="bold">Weather</Text>
+          ) : (
+            <>
+              <Text fontSize="xl" fontWeight="bold">
+                {weatherData.name}, {weatherData.sys.country}
               </Text>
-            </Text>
-            <Text mt="1">
-              Wind:{" "}
-              <Text as="span" fontWeight="bold">
-                {weatherData.wind.speed} m/s
+              <Flex justify="center" align="center" mt="2">
+                <Image
+                  src={iconUrl}
+                  alt={weatherData.weather[0].description}
+                  boxSize="80px"
+                />
+                <Text fontSize="4xl" ml="3">
+                  {temperature}°C
+                </Text>
+              </Flex>
+              <Text fontSize="md" mt="1" fontStyle="italic">
+                {weatherData.weather[0].description}
               </Text>
-            </Text>
-            <Text mt="1">
-              Humidity:{" "}
-              <Text as="span" fontWeight="bold">
-                {weatherData.main.humidity}%
+              <Text mt="2">
+                Feels like:{" "}
+                <Text as="span" fontWeight="bold">
+                  {feelsLike}°C
+                </Text>
               </Text>
-            </Text>
-            <Text mt="1">
-              Pressure:{" "}
-              <Text as="span" fontWeight="bold">
-                {weatherData.main.pressure} hPa
+              <Text mt="1">
+                Wind:{" "}
+                <Text as="span" fontWeight="bold">
+                  {weatherData.wind.speed} m/s
+                </Text>
               </Text>
-            </Text>
-            <Text mt="1">
-              Visibility:{" "}
-              <Text as="span" fontWeight="bold">
-                {weatherData.visibility / 1000} km
+              <Text mt="1">
+                Humidity:{" "}
+                <Text as="span" fontWeight="bold">
+                  {weatherData.main.humidity}%
+                </Text>
               </Text>
-            </Text>
-          </>
-        )}
-      </Box>
-    </Rnd>
+              <Text mt="1">
+                Pressure:{" "}
+                <Text as="span" fontWeight="bold">
+                  {weatherData.main.pressure} hPa
+                </Text>
+              </Text>
+              <Text mt="1">
+                Visibility:{" "}
+                <Text as="span" fontWeight="bold">
+                  {weatherData.visibility / 1000} km
+                </Text>
+              </Text>
+            </>
+          )}
+        </Box>
+      </Rnd>
+    </Box>
   );
 };
 
