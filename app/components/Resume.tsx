@@ -42,21 +42,20 @@ const Resume = () => {
           </Button>
         </HStack>
         <Text color={textColor}>
-          Email:{" "}
-          <a href="mailto:michellelo.dev@gmail.com">michellelo.dev@gmail.com</a>{" "}
-          | LinkedIn:{" "}
+          {/* Email:{" "}
+          <a href="mailto:michellelo.dev@gmail.com">michellelo.dev@gmail.com</a>{" "} */}
           <a
             href="https://www.linkedin.com/in/michelle--lo/"
             target="_blank"
-            style={{ color: "blue" }}
+            // style={{ color: "blue" }}
           >
             LinkedIn
           </a>{" "}
-          | GitHub:{" "}
+          |{" "}
           <a
             href="https://github.com/Mich-Elle-Lo"
             target="_blank"
-            style={{ color: "blue" }}
+            // style={{ color: "blue" }}
           >
             GitHub
           </a>
