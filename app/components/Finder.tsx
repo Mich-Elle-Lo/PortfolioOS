@@ -10,13 +10,7 @@ import {
   Button,
   useColorModeValue,
 } from "@chakra-ui/react";
-import {
-  FiFolder,
-  FiFileText,
-  FiArrowLeft,
-  FiSun,
-  FiMoon,
-} from "react-icons/fi";
+import { FiFolder, FiFileText, FiArrowLeft } from "react-icons/fi";
 import MacWindow from "./MacWindow";
 import Resume from "./Resume";
 
