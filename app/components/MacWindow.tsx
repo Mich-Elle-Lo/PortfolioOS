@@ -1,7 +1,7 @@
 "use client";
 import { Rnd } from "react-rnd";
 import styles from "../styles/MacWindow.module.scss";
-import { Box, Text, useColorMode } from "@chakra-ui/react";
+import { Box, Text, useColorModeValue } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
 interface MacWindowProps {
@@ -23,7 +23,9 @@ const MacWindow: React.FC<MacWindowProps> = ({
   initialX,
   initialY,
 }) => {
-  const { colorMode } = useColorMode();
+  const bg = useColorModeValue("white", "gray.800");
+  const headerBg = useColorModeValue("gray.100", "gray.700");
+  const textColor = useColorModeValue("black", "white");
 
   return (
     <Rnd
@@ -65,14 +67,15 @@ const MacWindow: React.FC<MacWindowProps> = ({
       >
         <Box
           className={styles.window}
-          bg={colorMode === "light" ? "white" : "gray.800"}
-          color={colorMode === "light" ? "black" : "white"}
+          bg={bg}
+          color={textColor}
           cursor="default"
           onMouseDown={onClick}
         >
           <Box
             className={styles["window__header"]}
-            bg={colorMode === "light" ? "gray.100" : "gray.700"}
+            bg={bg}
+            color={textColor}
             display="flex"
             alignItems="center"
             justifyContent="space-between"
@@ -106,10 +109,7 @@ const MacWindow: React.FC<MacWindowProps> = ({
             <Text>{title}</Text>
             <Box width="36px" />
           </Box>
-          <Box
-            className={styles["window__content"]}
-            color={colorMode === "light" ? "black" : "white"}
-          >
+          <Box className={styles["window__content"]} bg={bg} color={textColor}>
             {children}
           </Box>
         </Box>

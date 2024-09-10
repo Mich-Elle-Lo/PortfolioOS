@@ -19,7 +19,7 @@ const Resume = () => {
   const { isOpen: isSkillsOpen, onToggle: toggleSkills } = useDisclosure();
   const { isOpen: isEduOpen, onToggle: toggleEdu } = useDisclosure();
 
-  const bg = useColorModeValue("gray.100", "gray.700");
+  const bg = useColorModeValue("white", "gray.800");
   const textColor = useColorModeValue("black", "white");
 
   return (

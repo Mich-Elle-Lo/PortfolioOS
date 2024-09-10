@@ -41,7 +41,7 @@ const Finder: React.FC<FinderProps> = ({
   zIndex,
   onClick,
 }) => {
-  const bg = useColorModeValue("gray.100", "gray.700");
+  const bg = useColorModeValue("white", "gray.800");
   const textColor = useColorModeValue("black", "white");
 
   const [currentFolder, setCurrentFolder] = useState(initialFolders);
