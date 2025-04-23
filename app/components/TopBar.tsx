@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Box,
   Text,
@@ -15,34 +16,56 @@ import { formatTime } from "../utils/utils";
 const TopBar = () => {
   const time = useCurrentTime();
   const { colorMode, toggleColorMode } = useColorMode();
+  const [batteryLevel, setBatteryLevel] = useState<number>(100);
 
-  const bgColor = useColorModeValue("gray.300", "gray.900");
+  const bgColor = useColorModeValue(
+    "rgba(255,255,255,0.4)",
+    "rgba(26,32,44,0.4)"
+  );
   const textColor = useColorModeValue("black", "white");
+
+  const isWifiConnected = true;
+
+  const getBatteryColor = () => {
+    if (batteryLevel >= 80) return "green.400";
+    if (batteryLevel >= 30) return "orange.300";
+    return "red.400";
+  };
 
   return (
     <Box
       bg={bgColor}
       color={textColor}
       width="100%"
-      height="1.875rem"
+      height="2.5rem"
       marginBottom=".6rem"
       cursor="default"
       display="flex"
       alignItems="center"
       justifyContent="space-between"
-      paddingX="10px"
+      paddingX="12px"
       position="fixed"
       top="0"
       zIndex="1000"
+      backdropFilter="blur(10px)"
+      transition="background 0.3s ease"
+      // initial={{ opacity: 0, y: -10 }}
+      // animate={{ opacity: 1, y: 0 }}
     >
-      <Flex alignItems="center" cursor="default">
+      <Flex alignItems="center">
         <AiOutlineApple size="20px" />
-        <Text ml="10px">File</Text>
-        <Text ml="10px">Edit</Text>
-        <Text ml="10px">View</Text>
-        <Text ml="10px">Go</Text>
-        <Text ml="10px">Window</Text>
-        <Text ml="10px">Help</Text>
+        {["File", "Edit", "View", "Go", "Window", "Help"].map((item) => (
+          <Text
+            key={item}
+            ml="10px"
+            fontSize="md"
+            fontWeight="medium"
+            _hover={{ opacity: 0.8 }}
+            transition="all 0.2s ease"
+          >
+            {item}
+          </Text>
+        ))}
       </Flex>
 
       <Flex alignItems="center">
@@ -55,8 +78,33 @@ const TopBar = () => {
           variant="ghost"
           color={textColor}
         />
-        <FaWifi size="20px" style={{ marginRight: ".7rem" }} />
-        <FaBatteryFull size="20px" />
+        {/* WiFi with green dot */}
+        <Flex align="center" mr="0.7rem" position="relative">
+          <FaWifi size="18px" />
+          {isWifiConnected && (
+            <Box
+              position="absolute"
+              top="0"
+              right="-6px"
+              w="6px"
+              h="6px"
+              bg="green.300"
+              borderRadius="full"
+            />
+          )}
+        </Flex>
+        <Flex align="center" position="relative" mr="15px">
+          <FaBatteryFull size="18px" />
+          <Box
+            position="absolute"
+            top="0"
+            right="-6px"
+            w="6px"
+            h="6px"
+            bg={getBatteryColor()}
+            borderRadius="full"
+          />
+        </Flex>
         <Text mr="15px" ml="20px">
           {formatTime(time)}
         </Text>
