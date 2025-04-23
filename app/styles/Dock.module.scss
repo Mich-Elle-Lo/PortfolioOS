@@ -1,3 +1,5 @@
+@import "./variables.scss";
+
 .dockContainer {
   position: fixed;
   bottom: 0;
@@ -5,22 +7,27 @@
   transform: translateX(-50%);
   z-index: 1000;
   transition: transform 0.3s ease;
+}
 
-  .dock {
-    display: flex;
-    padding: 0.2rem 0.5rem;
-    border-radius: 8px;
-    // position: fixed;
-    // bottom: 0.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    // z-index: 1000;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+.dock {
+  display: flex;
+  padding: 0.4rem 1rem;
+  border-radius: $border-radius;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
-    &__icon {
-      margin: 8px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-  }
+.dock__icon {
+  margin: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  will-change: transform;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

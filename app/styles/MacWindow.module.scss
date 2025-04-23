@@ -1,29 +1,30 @@
 @import "./variables.scss";
 
 .window {
-  //   background-color: white;
   border-radius: $border-radius;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  border: 1px solid $background-color-dark;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   height: 100%;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
 
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: $padding-small;
-    // background-color: $background-color-light;
-    // border-bottom: 1px solid $background-color-dark;
     cursor: move;
+    background: transparent;
+    backdrop-filter: blur(10px);
+    cursor: grab;
   }
+
   &__content {
-    padding: 0.1rem;
-    border-radius: $border-radius;
     flex-grow: 1;
     overflow: auto;
-    // height: 100%;
   }
 }

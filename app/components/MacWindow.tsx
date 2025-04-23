@@ -13,6 +13,7 @@ interface MacWindowProps {
   initialX: number;
   initialY: number;
 }
+const MotionBox = motion(Box);
 
 const MacWindow: React.FC<MacWindowProps> = ({
   title,
@@ -23,9 +24,12 @@ const MacWindow: React.FC<MacWindowProps> = ({
   initialX,
   initialY,
 }) => {
-  const bg = useColorModeValue("white", "gray.800");
-  const headerBg = useColorModeValue("gray.100", "gray.700");
-  const textColor = useColorModeValue("black", "white");
+  const bg = useColorModeValue(
+    "rgba(255, 255, 255, 0.75)",
+    "rgba(26, 32, 44, 0.75)"
+  );
+  const textColor = useColorModeValue("gray.900", "gray.100");
+  const borderColor = useColorModeValue("gray.200", "gray.600");
 
   return (
     <Rnd
@@ -42,6 +46,7 @@ const MacWindow: React.FC<MacWindowProps> = ({
       onDragStart={onClick}
       onResizeStart={onClick}
       onMouseDown={onClick}
+      dragHandleClassName={styles["window__header"]}
       enableResizing={{
         top: true,
         right: true,
@@ -54,10 +59,10 @@ const MacWindow: React.FC<MacWindowProps> = ({
       }}
     >
       <motion.div
-        initial={{ opacity: 0, scale: 0.8, rotateX: -10 }}
-        animate={{ opacity: 1, scale: 1, rotateX: 0 }}
-        exit={{ opacity: 0, scale: 0.8, rotateX: -10 }}
-        transition={{ duration: 0.5 }}
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.95 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
         style={{
           width: "100%",
           height: "100%",
@@ -65,54 +70,50 @@ const MacWindow: React.FC<MacWindowProps> = ({
           flexDirection: "column",
         }}
       >
-        <Box
+        <MotionBox
           className={styles.window}
           bg={bg}
           color={textColor}
-          cursor="default"
+          backdropFilter="blur(12px)"
+          border={`1px solid ${borderColor}`}
+          borderRadius="xl"
           onMouseDown={onClick}
+          boxShadow="lg"
         >
-          <Box
-            className={styles["window__header"]}
-            bg={bg}
-            color={textColor}
-            display="flex"
-            alignItems="center"
-            justifyContent="space-between"
-            padding="0.5rem"
-            cursor="move"
-          >
-            <Box display="flex" gap="0.5rem">
+          <Box className={styles["window__header"]}>
+            <Box display="flex" gap="0.5rem" alignItems="center">
+              {/* Styled control buttons with hover states */}
               <Box
                 w="12px"
                 h="12px"
-                borderRadius="50%"
-                bg="red.500"
-                cursor="pointer"
+                borderRadius="full"
+                bg="red.400"
+                _hover={{ bg: "red.500" }}
                 onClick={onClose}
-              />
-              <Box
-                w="12px"
-                h="12px"
-                borderRadius="50%"
-                bg="yellow.500"
                 cursor="pointer"
               />
               <Box
                 w="12px"
                 h="12px"
-                borderRadius="50%"
-                bg="green.500"
+                borderRadius="full"
+                bg="yellow.400"
+                _hover={{ bg: "yellow.500" }}
+                cursor="pointer"
+              />
+              <Box
+                w="12px"
+                h="12px"
+                borderRadius="full"
+                bg="green.400"
+                _hover={{ bg: "green.500" }}
                 cursor="pointer"
               />
             </Box>
-            <Text>{title}</Text>
+            <Text fontWeight="medium">{title}</Text>
             <Box width="36px" />
           </Box>
-          <Box className={styles["window__content"]} bg={bg} color={textColor}>
-            {children}
-          </Box>
-        </Box>
+          <Box className={styles["window__content"]}>{children}</Box>
+        </MotionBox>
       </motion.div>
     </Rnd>
   );

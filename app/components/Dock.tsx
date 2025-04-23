@@ -13,18 +13,11 @@ const Dock = ({ onOpenApp }: { onOpenApp: (app: string) => void }) => {
     const handleMouseMove = (event: MouseEvent) => {
       const dockHeight = 80;
       const threshold = window.innerHeight - dockHeight * 2;
-      if (event.clientY >= threshold) {
-        setIsHovering(true);
-      } else {
-        setIsHovering(false);
-      }
+      setIsHovering(event.clientY >= threshold);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   return (
@@ -47,10 +40,7 @@ const Dock = ({ onOpenApp }: { onOpenApp: (app: string) => void }) => {
         },
       }}
     >
-      <Box
-        className={styles.dock}
-        bg={colorMode === "light" ? "gray.400" : "gray.700"}
-      >
+      <Box className={styles.dock}>
         {DesktopDockIcons.map(({ icon, label, action }) => (
           <Tooltip
             label={label}
@@ -62,10 +52,14 @@ const Dock = ({ onOpenApp }: { onOpenApp: (app: string) => void }) => {
           >
             <motion.div
               key={label}
-              whileHover={{ scale: 1.5 }}
+              whileHover={{
+                scale: 1.4,
+                y: -10,
+              }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
               className={styles["dock__icon"]}
               onClick={() => onOpenApp(action)}
+              style={{ cursor: "pointer" }}
             >
               <Icon as={icon} w={10} h={10} color="white" />
             </motion.div>
